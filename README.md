@@ -21,12 +21,31 @@ I'll give a first hands-on tutorial that introduces the model bGUI
 * Source code 
 
 #### Tutorial Session 2 (Full modeling workflow) (~90 min)
-I'll give an introduction to signals, bheaviors, functions, and a full modeling example. 
+I'll give an introduction to signals, behaviors, functions, and a full modeling example. 
 
-I wonder if I need to mvoe behaviors into the prior session 
+I wonder if I need to move behaviors into the prior session 
 * Slides 
 * Recording 
 * Source code 
+
+### Tuesday
+
+#### Tutorial Session 3 (Modelling the ECM as a substrate) (~60 min)
+I might need some support on this as I know as much as I learned at the Hackathon... are there existing slides I could use on this?
+* Slides 
+* Recording 
+* Source code 
+
+#### Tutorial Session 4 (Introducing PhysiMESS) (~90 min)
+ECM as agents 
+* Slides 
+* Recording 
+* Source code 
+
+### Wednesday
+
+#### Tutorial Session 5 (PhysiCell/PhysiMESS troubleshooting) (~60 min)
+Group facilitated troubleshooting
 
 
 ## Optional tutorials and resources 
