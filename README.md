@@ -43,7 +43,7 @@ An introduction to substrates and ECM continuum approaches in PhysiCell - Lead b
 An introduction to PhysiMESS and modelling the ECM components as additional agents - Lead by Cicely Macnamara 
 * Slides 
 * Recording 
-* Source Code https://github.com/CicelyKrystyna/PhysiMESS-CECAM
+* Source Code [access here as per setup guide](https://github.com/CicelyKrystyna/PhysiMESS-CECAM)
 
 ### Wednesday
 
