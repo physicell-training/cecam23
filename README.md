@@ -2,9 +2,10 @@
 This repository includes slides, recordings, source code, and resources for the CECAM 2023 workshop (March 2023). 
 
 ## Setup Materials 
-I'll post links to the setup guides here. 
 
-#### PhysiMESS set-up guide
+### PhysiCell set-up guide
+
+### PhysiMESS set-up guide
 * Source code: [access here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM)
 * Setup guide: [available here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM/raw/main/setup/PhysiMESS_Model_Builder.pdf)
 
