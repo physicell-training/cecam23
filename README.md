@@ -26,8 +26,8 @@ You can get setup help in our [dedicated Slack workspace](https://join.slack.com
 
 
 ### PhysiMESS set-up guide
-* Source code: [access here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM)
-* Setup guide: [available here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM/raw/main/setup/PhysiMESS_Model_Builder.pdf)
+* Source code: [click here](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMeSS)
+* Setup guide: [click here](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMeSS/setup/PhysiMESS_setup_guide.pdf)
 
 ## Sessions 
 
