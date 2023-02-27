@@ -1,4 +1,4 @@
-# PhysiMESS-CECAM
+# PhysiMESS Directory
 PhysiMESS (PhysiCell MicroEnvironment Structure Simulation) is a PhysiCell add-on which allows users to simulate ECM components as agents. 
 
 This source code is for the CECAM-Lorentz workshop "The Extracellular Matrix: How to model structure complexity"
