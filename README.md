@@ -5,8 +5,8 @@ This repository includes slides, recordings, source code, and resources for the 
 I'll post links to the setup guides here. 
 
 #### PhysiMESS set-up guide
-*Source code [accessed from here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM)
-* Setup guide [available here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM/raw/main/setup)
+* Source code: [access here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM)
+* Setup guide: [available here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM/raw/main/setup/PhysiMESS_Model_Builder.pdf)
 
 ## Sessions 
 
