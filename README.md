@@ -19,6 +19,11 @@ Linux users can most likely skip setup g++ and Python setup, but they should dow
 #### Further help
 You can get setup help in our [dedicated Slack workspace](https://join.slack.com/t/physicellcomm-sf93727/shared_invite/zt-qj1av6yd-yVeer8VkQaNDjDz7fF00jA). 
 
+#### Other helpful tutorials 
+##### Working with PhysiCell Projects 
+* Slides: 
+* Video: 
+
 
 ### PhysiMESS set-up guide
 * Source code: [access here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM)
@@ -45,6 +50,9 @@ An introduction to signals, behaviours, functions, and a full modelling example 
 * Slides 
 * Recording 
 * Source code 
+
+#### 
+
 
 ### Tuesday
 
