@@ -39,7 +39,7 @@ An introduction to substrates and ECM continuum approaches in PhysiCell - Lead b
 * Recording 
 * Source code 
 
-#### Tutorial Session 4 (Introducing PhysiMESS) (~90 min)
+#### Tutorial Session 4 (Introducing PhysiMESS) (13.30-15.00)
 An introduction to PhysiMESS and modelling the ECM components as additional agents - Lead by Cicely Macnamara 
 * Slides 
 * Recording 
@@ -47,12 +47,12 @@ An introduction to PhysiMESS and modelling the ECM components as additional agen
 
 ### Wednesday
 
-#### Tutorial Session 5 (PhysiCell/PhysiMESS troubleshooting) (~60 min)
+#### Tutorial Session 5 (PhysiCell/PhysiMESS troubleshooting) (10.00-11.00)
 Group facilitated troubleshooting
 
 ### Thursday
 
-#### Tutorial Session 6 (PhysiCell/PhysiMESS troubleshooting) (~60 min)
+#### Tutorial Session 6 (PhysiCell/PhysiMESS troubleshooting) (10.00-11.00)
 Group facilitated troubleshooting
 
 
