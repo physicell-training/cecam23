@@ -4,6 +4,10 @@ This repository includes slides, recordings, source code, and resources for the 
 ## Setup Materials 
 I'll post links to the setup guides here. 
 
+#### PhysiMESS set-up guide
+Source code accessed from [click here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM)
+Setup guide [click here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM/tree/main/setup)
+
 ## Sessions 
 
 ### Monday
@@ -40,7 +44,7 @@ I might need some support on this as I know as much as I learned at the Hackatho
 ECM as agents 
 * Slides 
 * Recording 
-* Source code 
+* Source Code https://github.com/CicelyKrystyna/PhysiMESS-CECAM
 
 ### Wednesday
 
