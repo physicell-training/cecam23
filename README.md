@@ -3,7 +3,22 @@ This repository includes slides, recordings, source code, and resources for the 
 
 ## Setup Materials 
 
-### PhysiCell set-up guide
+### PhysiCell set-up guides
+
+#### MacOS Setup
+* Slides: [click here](https://github.com/physicell-training/ws2022/raw/main/setup/PhysiCell_ws2022_macOS_setup.pdf)
+* Video: [click here](https://youtu.be/Sq9nfKS5U0E)
+
+#### Windows Setup
+* Slides: [click here](https://github.com/physicell-training/ws2022/raw/main/setup/PhysiCell_ws2022_Windows_setup.pdf) 
+* Video: [click here](https://youtu.be/hIP4JUrViRA)
+  
+#### Linux Setup
+Linux users can most likely skip setup g++ and Python setup, but they should download [PhysiCell 1.10.4 (or later)](https://github.com/MathCancer/PhysiCell/releases/latest) to test that they can compile and run the sample projects. See either the Windows or MacOS guide for details. 
+
+#### Further help
+You can get setup help in our [dedicated Slack workspace](https://join.slack.com/t/physicellcomm-sf93727/shared_invite/zt-qj1av6yd-yVeer8VkQaNDjDz7fF00jA). 
+
 
 ### PhysiMESS set-up guide
 * Source code: [access here](https://github.com/CicelyKrystyna/PhysiMESS-CECAM)
