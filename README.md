@@ -13,36 +13,34 @@ This repository includes slides, recordings, source code, and resources for the 
 
 ### Monday
 
-#### Plenary (~60 min)
-Paul will give an intro to ABMs and PhysiCell. 
+#### Plenary (11.30-12.30)
+Detangling complex multicellular systems with agent-based modeling - Paul Macklin 
 * Slides 
 * Recording 
 * Source code 
 
-#### Tutorial Session 1 (First PhysiCell model) (~60 min)
-Paul will give a first hands-on tutorial that introduces the model bGUI
+#### Tutorial Session 1 (First PhysiCell model) (12.30-13.30)
+An hands-on tutorial that introduces the model builder GUI - Lead by Paul Macklin
 * Slides 
 * Recording 
 * Source code 
 
-#### Tutorial Session 2 (Full modeling workflow) (~90 min)
-Paul will give an introduction to signals, behaviors, functions, and a full modeling example. 
-
-I wonder if I need to move behaviors into the prior session 
+#### Tutorial Session 2 (Full modeling workflow) (14.30-16.00)
+An introduction to signals, behaviours, functions, and a full modelling example - Lead by Paul Macklin 
 * Slides 
 * Recording 
 * Source code 
 
 ### Tuesday
 
-#### Tutorial Session 3 (Modelling the ECM as a substrate) (~60 min)
-Robyn will give an introduction to substrates. 
+#### Tutorial Session 3 (Modelling the ECM as a substrate) (11.30-12.30)
+An introduction to substrates and ECM continuum approaches in PhysiCell - Lead by Robyn Shuttleworth
 * Slides 
 * Recording 
 * Source code 
 
 #### Tutorial Session 4 (Introducing PhysiMESS) (~90 min)
-Cicely will introduce PhysiMESS and modelling the ECM as additional agents 
+An introduction to PhysiMESS and modelling the ECM components as additional agents - Lead by Cicely Macnamara 
 * Slides 
 * Recording 
 * Source Code https://github.com/CicelyKrystyna/PhysiMESS-CECAM
