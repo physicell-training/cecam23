@@ -4,7 +4,7 @@ PhysiMESS (PhysiCell MicroEnvironment Structure Simulation) is a PhysiCell add-o
 This source code is for the CECAM-Lorentz workshop "The Extracellular Matrix: How to model structure complexity"
 
 ## Directory files
-* Source code based on PhysiCell v1.10.1 with PhysiMESS modifications (see DOCUMENTATION.txt)
+* Source code built on PhysiCell v1.10.4 with PhysiMESS modifications (see DOCUMENTATION.txt)
 * Makefile
 * config directory with pre-loaded examples
 * setup guide
@@ -22,3 +22,4 @@ This source code is for the CECAM-Lorentz workshop "The Extracellular Matrix: Ho
 ### Cell_Fibre_Mechanics
 * mymodel_fibremaze.xml and fibre_maze.csv to model cell moving around a maze made of fibres
 * mymodel_potentials.xml and snowplough.csv to model both fibre pushing and rotation by cells
+* mymodel_hinge.xml and hinge.csv to model fibres being rotated at their hinge crosslink point by a cell
