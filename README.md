@@ -19,15 +19,20 @@ Linux users can most likely skip setup g++ and Python setup, but they should dow
 #### Further help
 You can get setup help in our [dedicated Slack workspace](https://join.slack.com/t/physicellcomm-sf93727/shared_invite/zt-qj1av6yd-yVeer8VkQaNDjDz7fF00jA). 
 
-#### Other helpful tutorials 
+
+### PhysiMESS set-up guide
+With PhysiCell setup you should be ready to run PhysiMESS 
+
+* Source code: [click here](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS)
+* Setup guide: [click here](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_setup_guide.pdf)
+
+You can get setup help in our [CECAM Slack workspace](https://join.slack.com/t/cecamecmworks-klu7155/shared_invite/zt-1p9c2arog-9w65U~b5T4R2N~bB2A6uzw).
+
+### Helpful tutorials 
+
 ##### Working with PhysiCell Projects 
 * Slides: 
 * Video: 
-
-
-### PhysiMESS set-up guide
-* Source code: [click here](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMeSS)
-* Setup guide: [click here](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMeSS/setup/PhysiMESS_setup_guide.pdf)
 
 ## Sessions 
 
@@ -64,9 +69,10 @@ An introduction to substrates and ECM continuum approaches in PhysiCell - Lead b
 
 #### Tutorial Session 4 (Introducing PhysiMESS) (13.30-15.00)
 An introduction to PhysiMESS and modelling the ECM components as additional agents - Lead by Cicely Macnamara 
+This tutorial will follow on from intial setup as per [setup guide](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_setup_guide.pdf)
 * Slides 
 * Recording 
-* Source Code [access here as per setup guide](https://github.com/CicelyKrystyna/PhysiMESS-CECAM)
+* Source Code [access here](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS) 
 
 ### Wednesday
 
@@ -77,7 +83,4 @@ Group facilitated troubleshooting
 
 #### Tutorial Session 6 (PhysiCell/PhysiMESS troubleshooting) (10.00-11.00)
 Group facilitated troubleshooting
-
-
-## Optional tutorials and resources 
 
