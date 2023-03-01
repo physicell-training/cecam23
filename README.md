@@ -26,7 +26,7 @@ With PhysiCell setup you should be ready to run PhysiMESS
 * Source code: [click here](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS)
 * Setup guide: [click here](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_setup_guide.pdf)
 
-You can get setup help in our [dedicated Slack workspace](https://join.slack.com/t/cecamecmworks-klu7155/shared_invite/zt-1p9c2arog-9w65U~b5T4R2N~bB2A6uzw).
+You can get setup help in our [CECAM Slack workspace](https://join.slack.com/t/cecamecmworks-klu7155/shared_invite/zt-1p9c2arog-9w65U~b5T4R2N~bB2A6uzw).
 
 ### Helpful tutorials 
 
