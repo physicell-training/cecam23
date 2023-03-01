@@ -21,7 +21,7 @@ Code read between lines:
 
     #include <list> required 
 
-    ### The following additional functions:
+### The following additional functions:
 
     * std::vector<Cell*> crosslinkers;
     * std::vector<double> crosslink_point;
@@ -39,17 +39,13 @@ Code read between lines:
     * void find_agent_neighbors( Cell* pCell );
     * void add_crosslinks( Cell* pCell );
 
-
-    ### The following additional parameters (XML):
+### The following additional parameters (XML):
 
     * double mLength = 0; 
     * double mRadius = 0; 
-
     * int fail_count = 0;
-
     * double stuck_counter = 0;
     * double unstuck_counter = 0;
-
     * bool degradation_flag = false;
     * bool fibre_degradation = false;
     * double fibreDegradationRate = 0.0;
@@ -57,20 +53,18 @@ Code read between lines:
     * bool fibre_rotation = false;
     * double mFibreStickiness = 1.0;
     * bool fibre_pushing = false;
-
     * int X_crosslink_count;
-
     * double mVelocityAdhesion = 0;
     * double mVelocityContact = 0;
     * double mCellVelocityMaximum= 0;
 
 ## PhysiMESS/core/PhysiCell_cell.cpp
 
-    * In Cell_State: ​​crosslinkers.resize(0);
+    * In Cell_State: crosslinkers.resize(0);
     * Significant changes to the add_potentials function 
     * Addition to update_position function to flag if a cell is stuck 
     
-    ### New functions 
+### New functions 
     * check_fibre_crosslinks and add_crosslinks - determine fibre crosslinks
     * CrossProduct and DotProduct - required for fibre crosslinks
     * degrade_fibre - remove a fibre if it’s determined that it will be degraded 
