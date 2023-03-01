@@ -7,7 +7,7 @@ This source code is for the CECAM-Lorentz workshop "The Extracellular Matrix: Ho
 * Source code built on PhysiCell v1.10.4 with PhysiMESS modifications (see DOCUMENTATION.txt)
 * Makefile
 * config directory with pre-loaded examples
-* [setup guide](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMeSS/setup/PhysiMESS_setup_guide.pdf)
+* [setup guide](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_setup_guide.pdf)
 
 
 ## Pre-loaded examples
