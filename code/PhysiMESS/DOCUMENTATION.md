@@ -9,13 +9,11 @@ Code read between lines:
 
 
 ## PhysiMESS/modules/PhysiCell_pathology.cpp
-
-    Code to visualise fibres as thin rectangles rather than spheres added to SVG_plot
-    Similarly fibres visualised as rectangles in the plot legend via create_plot_legend
+* Code to visualise fibres as thin rectangles rather than spheres added to SVG_plot
+* Similarly fibres visualised as rectangles in the plot legend via create_plot_legend
 
 ## PhysiMESS/custom-modules/custom.cpp
-
-    Changes made in set_up_tissue to allow us to initialise fibres either manually or from a csv file 
+*Changes made in set_up_tissue to allow us to initialise fibres either manually or from a csv file 
 
 ## PhysiMESS/core/PhysiCell_cell.h
 
