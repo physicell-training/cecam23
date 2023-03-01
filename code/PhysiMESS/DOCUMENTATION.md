@@ -1,4 +1,4 @@
-# PhysiCell Modifications
+# PhysiMESS Modifications
 The following files have been modified for PhysiMESS:
 
 Code read between lines:
