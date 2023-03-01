@@ -1117,8 +1117,11 @@ void Cell::copy_function_pointers(Cell* copy_me)
                possibly could put a tolerance on this to take into
                account the radius of fibres */
             if (DotProduct(FCP,FCP) == 0 &&
+                (centre_to_centre == this->state.orientation ||
+                centre_to_centre == -1.0 * this->state.orientation) &&
                 distance <= co_length) {
-                //std::cout << "fibre " << this->ID << " crosslinks end to end with parallel fibre " <<  (*fibre_neighbor).ID << std::endl;
+                std::cout << (*fibre_neighbor).position << " " << this->position << " " << distance << " " << co_length << std::endl;
+                std::cout << "fibre " << this->ID << " crosslinks end to end with parallel fibre " <<  (*fibre_neighbor).ID << std::endl;
                 if (std::find(this->state.crosslinkers.begin(), this->state.crosslinkers.end(), (fibre_neighbor)) ==
                     this->state.crosslinkers.end()) {
                     this->state.crosslinkers.push_back(fibre_neighbor);
@@ -1138,7 +1141,7 @@ void Cell::copy_function_pointers(Cell* copy_me)
             if (test_point1 <= co_radius &&
                 centre_to_centre != this->state.orientation &&
                 centre_to_centre != -1.0 * this->state.orientation) {
-                //std::cout << "fibre " << this->ID << " crosslinks in parallel plane with fibre " <<  (*fibre_neighbor).ID << std::endl;
+                std::cout << "fibre " << this->ID << " crosslinks in parallel plane with fibre " <<  (*fibre_neighbor).ID << std::endl;
                 if (std::find(this->state.crosslinkers.begin(), this->state.crosslinkers.end(), (fibre_neighbor)) ==
                     this->state.crosslinkers.end()) {
                     this->state.crosslinkers.push_back(fibre_neighbor);
@@ -1153,7 +1156,7 @@ void Cell::copy_function_pointers(Cell* copy_me)
             if (test_point2 <= co_radius &&
                 centre_to_centre != this->state.orientation &&
                 centre_to_centre != -1.0 * this->state.orientation) {
-                //std::cout << "fibre " << this->ID << " crosslinks in parallel plane with fibre " <<  (*fibre_neighbor).ID << std::endl;
+                std::cout << "fibre " << this->ID << " crosslinks in parallel plane with fibre " <<  (*fibre_neighbor).ID << std::endl;
                 if (std::find(this->state.crosslinkers.begin(), this->state.crosslinkers.end(), (fibre_neighbor)) ==
                     this->state.crosslinkers.end()) {
                     this->state.crosslinkers.push_back(fibre_neighbor);
@@ -1195,7 +1198,7 @@ void Cell::copy_function_pointers(Cell* copy_me)
                     lower_bound <= t_this && t_this <= upper_bound) {
                     if (std::find(this->state.crosslinkers.begin(), this->state.crosslinkers.end(), (fibre_neighbor)) ==
                         this->state.crosslinkers.end()) {
-                        //std::cout << "fibre " << this->ID << " crosslinks with fibre " << (*fibre_neighbor).ID << std::endl;
+                        std::cout << "fibre " << this->ID << " crosslinks with fibre " << (*fibre_neighbor).ID << std::endl;
                         this->state.crosslinkers.push_back(fibre_neighbor);
                     }
                     if (std::find(fibre_neighbor->state.crosslinkers.begin(), fibre_neighbor->state.crosslinkers.end(), (this)) ==
