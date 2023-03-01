@@ -2,8 +2,10 @@
 The following files have been modified for PhysiMESS:
 
 Code read between lines:
-     // !!! PHYSIMESS CODE BLOCK START !!! //
-     // !!! PHYSIMESS CODE BLOCK END !!! //
+
+// !!! PHYSIMESS CODE BLOCK START !!! //
+
+// !!! PHYSIMESS CODE BLOCK END !!! //
 
 
 ## PhysiMESS/modules/PhysiCell_pathology.cpp
