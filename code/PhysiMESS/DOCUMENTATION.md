@@ -12,15 +12,15 @@ Code read between lines:
 * Similarly fibres visualised as rectangles in the plot legend via ```create_plot_legend```
 
 ## PhysiMESS/custom-modules/custom.cpp
-* Changes made in set_up_tissue to allow us to initialise fibres either manually or from a csv file 
+* Changes made in ```set_up_tissue``` to allow us to initialise fibres either manually or from a csv file 
 
 ## PhysiMESS/core/PhysiCell_cell.h
 
     #include <list> required 
 
 ### The following additional functions:
-* std::vector<Cell*> crosslinkers;
-* std::vector<double> crosslink_point;
+* ```std::vector<Cell*> crosslinkers;```
+* ```std::vector<double> crosslink_point;```
 * void force_update_motility_vector(double dt_);
 * void check_fibre_crosslinks(Cell*);
 * void degrade_fibre(Cell*);
@@ -73,7 +73,7 @@ Code read between lines:
 ## PhysiMESS/core/PhysiCell_cell_container.cpp
 * Substantially changes to update_all_cells the following functions are called in order: 
     
-        register_fibre_voxels; find_agent_neighbors; deregister_fibre_voxels; add_crosslinks, degrade_fibre
+      register_fibre_voxels; find_agent_neighbors; deregister_fibre_voxels; add_crosslinks, degrade_fibre
     
 * In function remove_agent_from_voxel change to the following lines:       
       
