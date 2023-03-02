@@ -41,8 +41,8 @@ You can get setup help in our [CECAM Slack workspace](https://join.slack.com/t/c
 ### Helpful tutorials 
 
 ##### Working with PhysiCell Projects 
-* Slides: 
-* Video: 
+* Slides: [click here](https://github.com/physicell-training/ws2022/raw/main/sessions/session_01/slides/PhysiCell_ws2022_Session01.pdf)
+* Video: [click here](https://youtu.be/fP7-n_RlITU) 
 
 ## Sessions 
 
