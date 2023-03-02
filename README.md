@@ -19,17 +19,6 @@ Linux users can most likely skip setup g++ and Python setup, but they should dow
 #### Further help
 You can get setup help in our [dedicated PhysiCell Slack workspace](https://join.slack.com/t/physicellcomm-sf93727/shared_invite/zt-qj1av6yd-yVeer8VkQaNDjDz7fF00jA). 
 
-## Key components in code
-If you look in the [code](https://github.com/physicell-training/cecam23/tree/main/code) directory, you'll see: 
-* [PhysiCell](https://github.com/physicell-training/cecam23/tree/main/code/PhysiCell) - this is a sneak peak of the upcoming 1.11.0 release, which we'llk use throughout the workshop. 
-* [PhysiCell Model Builder](https://github.com/physicell-training/cecam23/tree/main/code/PhysiCell-model-builder) - This is an integrated environment for setting up, running, and visualizing PhysiCell simulations. 
-* [PhysiMeSS](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS) - This is a snapshot of the PhysiMeSS extension to PhysiCell, which is tailored to ECM modeling. 
-
-We will run most of our tutorials and sessions within these directories, and we'll rely upon this relative pathing. 
-
-## Other suggested tools. 
-The setup guides should already suggest ImageMagick. We also recommend [Microsoft VS Code](https://code.visualstudio.com/) as a good, cross-platform code editor. 
-
 ### PhysiMESS set-up guide
 With PhysiCell setup you should be ready to run PhysiMESS 
 
@@ -43,6 +32,19 @@ You can get setup help in our [CECAM Slack workspace](https://join.slack.com/t/c
 ##### Working with PhysiCell Projects 
 * Slides: [click here](https://github.com/physicell-training/ws2022/raw/main/sessions/session_01/slides/PhysiCell_ws2022_Session01.pdf)
 * Video: [click here](https://youtu.be/fP7-n_RlITU) 
+
+## Key components in code
+If you look in the [code](https://github.com/physicell-training/cecam23/tree/main/code) directory, you'll see: 
+* [PhysiCell](https://github.com/physicell-training/cecam23/tree/main/code/PhysiCell) - this is a sneak peak of the upcoming 1.11.0 release, which we'llk use throughout the workshop. 
+* [PhysiCell Model Builder](https://github.com/physicell-training/cecam23/tree/main/code/PhysiCell-model-builder) - This is an integrated environment for setting up, running, and visualizing PhysiCell simulations. 
+* [PhysiMeSS](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS) - This is a snapshot of the PhysiMeSS extension to PhysiCell, which is tailored to ECM modeling. 
+
+We will run most of our tutorials and sessions within these directories, and we'll rely upon this relative pathing. 
+
+## Other suggested tools. 
+The setup guides should already suggest ImageMagick. We also recommend [Microsoft VS Code](https://code.visualstudio.com/) as a good, cross-platform code editor. 
+
+
 
 ## Sessions 
 
