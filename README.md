@@ -37,7 +37,7 @@ You can get setup help in our [CECAM Slack workspace](https://join.slack.com/t/c
 If you look in the [code](https://github.com/physicell-training/cecam23/tree/main/code) directory, you'll see: 
 * [PhysiCell](https://github.com/physicell-training/cecam23/tree/main/code/PhysiCell) - this is a sneak peak of the upcoming 1.11.0 release, which we'llk use throughout the workshop. 
 * [PhysiCell Model Builder](https://github.com/physicell-training/cecam23/tree/main/code/PhysiCell-model-builder) - This is an integrated environment for setting up, running, and visualizing PhysiCell simulations. 
-* [PhysiMeSS](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS) - This is a snapshot of the PhysiMeSS extension to PhysiCell, which is tailored to ECM modeling. 
+* [PhysiMESS](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS) - This is a snapshot of the PhysiMeSS extension to PhysiCell, which is tailored to ECM modeling. 
 
 We will run most of our tutorials and sessions within these directories, and we'll rely upon this relative pathing. 
 
@@ -81,6 +81,7 @@ An introduction to substrates and ECM continuum approaches in PhysiCell - Lead b
 
 #### Tutorial Session 4 (Introducing PhysiMESS) (13.30-15.00)
 An introduction to PhysiMESS and modelling the ECM components as additional agents - Lead by Cicely Macnamara 
+
 This tutorial will follow on from intial setup as per [setup guide](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_setup_guide.pdf)
 * Slides 
 * Recording 
