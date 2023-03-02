@@ -69,6 +69,7 @@ An introduction to substrates and ECM continuum approaches in PhysiCell - Lead b
 
 #### Tutorial Session 4 (Introducing PhysiMESS) (13.30-15.00)
 An introduction to PhysiMESS and modelling the ECM components as additional agents - Lead by Cicely Macnamara 
+
 This tutorial will follow on from intial setup as per [setup guide](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_setup_guide.pdf)
 * Slides 
 * Recording 
