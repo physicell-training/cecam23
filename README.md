@@ -36,6 +36,7 @@ You can get setup help in our [CECAM Slack workspace](https://join.slack.com/t/c
 ## Key components in code
 If you look in the [code](https://github.com/physicell-training/cecam23/tree/main/code) directory, you'll see: 
 * [PhysiCell](https://github.com/physicell-training/cecam23/tree/main/code/PhysiCell) - this is a sneak peak of the upcoming 1.11.0 release, which we'llk use throughout the workshop. 
+  * You may want to refer to the [release notes](https://github.com/MathCancer/PhysiCell/blob/dev-paul/README.md)
 * [PhysiCell Model Builder](https://github.com/physicell-training/cecam23/tree/main/code/PhysiCell-model-builder) - This is an integrated environment for setting up, running, and visualizing PhysiCell simulations. 
 * [PhysiMESS](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS) - This is a snapshot of the PhysiMESS extension to PhysiCell, which is tailored to ECM modeling. 
 
