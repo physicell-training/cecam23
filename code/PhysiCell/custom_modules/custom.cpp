@@ -292,18 +292,13 @@ void epithelial_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
 		// exposure to fibrosis immobilizes 
  	if( f > 0.1 && attached == false )
 	{
-		std::cout << "attaching toECM " << std::endl; 
-
 		set_single_behavior( pCell , "custom:attached" , 1.0 ); 
 
 		set_single_behavior( pCell , "custom:attached_x" , pCell->position[0] ); 
 		set_single_behavior( pCell , "custom:attached_y" , pCell->position[1] ); 
 		set_single_behavior( pCell , "custom:attached_z" , pCell->position[2] ); 
-
 		// set_single_behavior( pCell , "movable" , 0.0 ); 
 	}
-	
-	// return
 }
 
 void macrophage_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
@@ -346,7 +341,7 @@ void macrophage_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
 	set_single_behavior( pCell , "pro-inflammatory signal secretion" , s); 
 	
 		// large volume decdreaes phagocytosis 
-	double pr = pr0 + (prM-pr0) * Hill_response_function( v , 4000 , 2); 
+	double pr = pr0 + (prM-pr0) * Hill_response_function( v , 5000 , 2); 
 	set_single_behavior( pCell , "phagocytose dead cell" , pr); 
 	
 	// return

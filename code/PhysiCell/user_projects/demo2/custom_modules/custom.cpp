@@ -123,6 +123,7 @@ void create_cell_types( void )
 
 	Cell_Definition* pCD = find_cell_definition( "epithelial");
 	pCD->functions.update_phenotype = epithelial_phenotype;
+	pCD->functions.custom_cell_rule = epithelial_spring; 
 	
 	pCD = find_cell_definition( "macrophage"); 
 	pCD->functions.update_phenotype = macrophage_phenotype; 
@@ -219,7 +220,10 @@ std::vector<std::string> my_coloring_function( Cell* pCell )
 	if( get_single_signal( pCell , "apoptotic") > 0.5 )
 	{ out[0] = "orange"; }
 	if( get_single_signal( pCell , "necrotic") > 0.5 )
-	{ out[0] = "chocolate"; }
+	{ out[0] = "rgb(139,69,19)"; }
+
+	if( get_single_signal( pCell, "custom:attached") > 0.5  )
+	{ out[0] = "lime"; } 
 
 	return out; 
 }
@@ -257,6 +261,7 @@ void epithelial_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
 	double nd = get_single_signal( pCell , "necrotic debris"); 
 	double p = get_single_signal( pCell , "pressure"); 
 	double f = get_single_signal( pCell , "fibrosis"); 
+	bool attached = (bool) get_single_signal( pCell, "custom:attached");
 
 	// get base / reference parameters 
 
@@ -274,6 +279,10 @@ void epithelial_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
 	if( p > 1 )
 	{ p = 1.0; }
 	double b = bM * (1-p); 
+	/*
+	if( pCell->is_movable == false ) // safety check 
+	{ b = 0.0; }
+	*/
 	set_single_behavior( pCell , "cycle entry" , b); 
 
 		// necrotic debris increases apoptotic death 
@@ -281,10 +290,18 @@ void epithelial_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
 	set_single_behavior( pCell , "apoptosis" , da ); 
 
 		// exposure to fibrosis immobilizes 
-	if( f > 0.1 )
-	{ set_single_behavior( pCell , "movable" , 0 ); }
+ 	if( f > 0.1 && attached == false )
+	{
+		std::cout << "attaching toECM " << std::endl; 
 
+		set_single_behavior( pCell , "custom:attached" , 1.0 ); 
 
+		set_single_behavior( pCell , "custom:attached_x" , pCell->position[0] ); 
+		set_single_behavior( pCell , "custom:attached_y" , pCell->position[1] ); 
+		set_single_behavior( pCell , "custom:attached_z" , pCell->position[2] ); 
+
+		// set_single_behavior( pCell , "movable" , 0.0 ); 
+	}
 	
 	// return
 }
@@ -365,18 +382,36 @@ void fibroblast_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
 
 	double s0 = get_single_base_behavior( pCell , "migration speed"); 
 	double sM = 0.01 * s0; 
-	
+
+	// return; 
+
 	// calculate parameters based on rules 
 	// write parameter values
 
 		// inflammatory signal increases fibrobis 
-	double s = s0 + (sM-s0) * Hill_response_function( pis , 0.1 , 2 ); 
-	set_single_behavior( pCell , "migration speed" , s); 
-	
-		// inflammatory signal slows migration 
 	double sf = sf0 + (sfM-sf0) * Hill_response_function( pis , 0.1 , 2 ); 
 	set_single_behavior( pCell , "fibrosis secretion" , sf); 
+	
+		// inflammatory signal slows migration 
+	double s = s0 + (sM-s0) * Hill_response_function( pis , 0.1 , 2 ); 
+	set_single_behavior( pCell , "migration speed" , s); 
 	
 	// return
 }
   
+void epithelial_spring( Cell* pCell, Phenotype& phentoype , double dt )
+{
+	if( get_single_signal(pCell,"custom:attached") < 0.5 )
+	{ return; }
+
+	std::vector<double> dv = { 
+		get_single_signal(pCell,"custom:attached_x") ,
+		get_single_signal(pCell,"custom:attached_y") ,
+		get_single_signal(pCell,"custom:attached_z") }; 
+	dv -= pCell->position; 
+	dv *= 0.01; 
+
+	pCell->velocity += dv; 
+
+	return; 
+}
