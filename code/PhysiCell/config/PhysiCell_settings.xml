@@ -274,7 +274,10 @@
                 </cell_transformations>
             </phenotype>
             <custom_data>
-                <sample conserved="false" units="dimensionless" description="">1.0</sample>
+                <attached_x conserved="false" units="dimensionless" description="">1.0</attached_x>
+                <attached_y conserved="false" units="dimensionless" description="">1.0</attached_y>
+                <attached_z conserved="false" units="dimensionless" description="">1.0</attached_z>
+                <attached conserved="false" units="dimensionless" description="">0.0</attached>
             </custom_data>
         </cell_definition>
         <cell_definition name="macrophage" ID="1">
@@ -423,7 +426,10 @@
                 </cell_transformations>
             </phenotype>
             <custom_data>
-                <sample conserved="false" units="dimensionless" description="">1.0</sample>
+                <attached_x conserved="false" units="dimensionless" description="">1.0</attached_x>
+                <attached_y conserved="false" units="dimensionless" description="">1.0</attached_y>
+                <attached_z conserved="false" units="dimensionless" description="">1.0</attached_z>
+                <attached conserved="false" units="dimensionless" description="">0.0</attached>
             </custom_data>
         </cell_definition>
         <cell_definition name="fibroblast" ID="2">
@@ -572,7 +578,10 @@
                 </cell_transformations>
             </phenotype>
             <custom_data>
-                <sample conserved="false" units="dimensionless" description="">1.0</sample>
+                <attached_x conserved="false" units="dimensionless" description="">1.0</attached_x>
+                <attached_y conserved="false" units="dimensionless" description="">1.0</attached_y>
+                <attached_z conserved="false" units="dimensionless" description="">1.0</attached_z>
+                <attached conserved="false" units="dimensionless" description="">0.0</attached>
             </custom_data>
         </cell_definition>
     </cell_definitions>

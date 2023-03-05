@@ -494,6 +494,7 @@ void setup_signal_behavior_dictionaries( void )
 	map_name = "is_movable";
 	behavior_to_int[map_name ] = map_index;
 	int_to_behavior[map_index] = map_name; 
+
 	// synonyms
 	behavior_to_int["movable"] = map_index; 
 	behavior_to_int["is movable"] = map_index; 
@@ -503,13 +504,13 @@ void setup_signal_behavior_dictionaries( void )
 	{
 		map_index++; 
 		Cell_Definition* pCD = cell_definitions_by_type[i]; 
-		std::string map_name =  "immunogenicity to " + pCD->name; 
+		map_name =  "immunogenicity to " + pCD->name; 
 		behavior_to_int[map_name ] = map_index;
 		int_to_behavior[map_index] = map_name; 
 
 		// synonyms 
-		std::string temp1 = "immunogenicity to cell type " + std::to_string( pCD->type ); 
-		behavior_to_int[temp1] = map_index; 
+		map_name = "immunogenicity to cell type " + std::to_string( pCD->type ); 
+		behavior_to_int[map_name] = map_index; 
 	}
 
 	/* add new behaviors above this line */
@@ -519,6 +520,7 @@ void setup_signal_behavior_dictionaries( void )
 
     display_signal_dictionary(); 
     display_behavior_dictionary(); 
+
 /*
 	// now create empty SR models for each cell definition 
 
