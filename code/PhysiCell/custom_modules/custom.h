@@ -92,3 +92,4 @@ void contact_function( Cell* pMe, Phenotype& phenoMe , Cell* pOther, Phenotype& 
 
 void epithelial_phenotype( Cell* pCell, Phenotype& phenotype , double dt ); 
 void macrophage_phenotype( Cell* pCell, Phenotype& phenotype , double dt ); 
+void fibroblast_phenotype( Cell* pCell, Phenotype& phenotype , double dt ); 

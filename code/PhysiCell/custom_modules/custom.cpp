@@ -126,6 +126,9 @@ void create_cell_types( void )
 	
 	pCD = find_cell_definition( "macrophage"); 
 	pCD->functions.update_phenotype = macrophage_phenotype; 
+
+	pCD = find_cell_definition( "fibroblast"); 
+	pCD->functions.update_phenotype = fibroblast_phenotype; 
 	
 	/*
 	   This builds the map of cell definitions and summarizes the setup. 
@@ -332,3 +335,48 @@ void macrophage_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
 	// return
 }
  
+void fibroblast_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
+{
+	// check for dead behavior 
+	if( get_single_signal( pCell , "apoptotic") > 0.5 )
+	{
+		set_single_behavior( pCell, "apoptotic debris secretion" , 1); 
+		set_single_behavior( pCell, "necrotic debris secretion" , 0); 
+
+		pCell->functions.update_phenotype = NULL; 
+		return; 
+	}
+	if( get_single_signal( pCell , "necrotic") > 0.5 )
+	{
+		set_single_behavior( pCell, "apoptotic debris secretion" , 0); 
+		set_single_behavior( pCell, "necrotic debris secretion" , 1);
+
+		pCell->functions.update_phenotype = NULL; 
+		return; 
+	}
+
+	// sample signals 
+	double pis = get_single_signal( pCell , "pro-inflammatory signal"); 
+
+	// get base / reference parameters 
+
+	double sf0 = get_single_base_behavior( pCell , "fibrosis secretion"); 
+	double sfM = 10; 
+
+	double s0 = get_single_base_behavior( pCell , "migration speed"); 
+	double sM = 0.01 * s0; 
+	
+	// calculate parameters based on rules 
+	// write parameter values
+
+		// inflammatory signal increases fibrobis 
+	double s = s0 + (sM-s0) * Hill_response_function( pis , 0.1 , 2 ); 
+	set_single_behavior( pCell , "migration speed" , s); 
+	
+		// inflammatory signal slows migration 
+	double sf = sf0 + (sfM-sf0) * Hill_response_function( pis , 0.1 , 2 ); 
+	set_single_behavior( pCell , "fibrosis secretion" , sf); 
+	
+	// return
+}
+  
