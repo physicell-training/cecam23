@@ -220,7 +220,8 @@ std::vector<std::string> my_coloring_function( Cell* pCell )
 	{ out[0] = "orange"; }
 	if( get_single_signal( pCell , "necrotic") > 0.5 )
 	{ out[0] = "rgb(139,69,19)"; }
-	if( get_single_signal( pCell, "movable") < 0.5 )
+
+	if( pCell->is_movable == false )
 	{ out[0] = "black"; }
 
 	return out; 

@@ -103,12 +103,12 @@
             <initial_condition units="dimensionless">0.0</initial_condition>
             <Dirichlet_boundary_condition units="dimensionless" enabled="False">0.0</Dirichlet_boundary_condition>
             <Dirichlet_options>
-                <boundary_value ID="xmin" enabled="False" />
-                <boundary_value ID="xmax" enabled="False" />
-                <boundary_value ID="ymin" enabled="False" />
-                <boundary_value ID="ymax" enabled="False" />
-                <boundary_value ID="zmin" enabled="False" />
-                <boundary_value ID="zmax" enabled="False" />
+                <boundary_value ID="xmin" enabled="False">0.0</boundary_value>
+                <boundary_value ID="xmax" enabled="False">0.0</boundary_value>
+                <boundary_value ID="ymin" enabled="False">0.0</boundary_value>
+                <boundary_value ID="ymax" enabled="False">0.0</boundary_value>
+                <boundary_value ID="zmin" enabled="False">0.0</boundary_value>
+                <boundary_value ID="zmax" enabled="False">0.0</boundary_value>
             </Dirichlet_options>
         </variable>
         <options>
@@ -248,17 +248,20 @@
                         <phagocytosis_rate name="epithelial" units="1/min">0</phagocytosis_rate>
                         <phagocytosis_rate name="macrophage" units="1/min">0.0</phagocytosis_rate>
                         <phagocytosis_rate name="fibroblast" units="1/min">0.0</phagocytosis_rate>
+                        <phagocytosis_rate name="default" units="1/min">0</phagocytosis_rate>
                     </live_phagocytosis_rates>
                     <attack_rates>
                         <attack_rate name="epithelial" units="1/min">0</attack_rate>
                         <attack_rate name="macrophage" units="1/min">0.0</attack_rate>
                         <attack_rate name="fibroblast" units="1/min">0.0</attack_rate>
+                        <attack_rate name="default" units="1/min">0</attack_rate>
                     </attack_rates>
                     <damage_rate units="1/min">1</damage_rate>
                     <fusion_rates>
                         <fusion_rate name="epithelial" units="1/min">0</fusion_rate>
                         <fusion_rate name="macrophage" units="1/min">0.0</fusion_rate>
                         <fusion_rate name="fibroblast" units="1/min">0.0</fusion_rate>
+                        <fusion_rate name="default" units="1/min">0</fusion_rate>
                     </fusion_rates>
                 </cell_interactions>
                 <cell_transformations>
@@ -266,6 +269,7 @@
                         <transformation_rate name="epithelial" units="1/min">0</transformation_rate>
                         <transformation_rate name="macrophage" units="1/min">0.0</transformation_rate>
                         <transformation_rate name="fibroblast" units="1/min">0.0</transformation_rate>
+                        <transformation_rate name="default" units="1/min">0</transformation_rate>
                     </transformation_rates>
                 </cell_transformations>
             </phenotype>
