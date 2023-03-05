@@ -122,7 +122,13 @@ void create_cell_types( void )
 	cell_defaults.functions.contact_function = contact_function; 
 
 	Cell_Definition* pCD = find_cell_definition( "epithelial");
-	pCD->functions.update_phenotype = epithelial_phenotype; 
+	pCD->functions.update_phenotype = epithelial_phenotype;
+	
+	pCD = find_cell_definition( "macrophage"); 
+	pCD->functions.update_phenotype = macrophage_phenotype; 
+
+	pCD = find_cell_definition( "fibroblast"); 
+	pCD->functions.update_phenotype = fibroblast_phenotype; 
 	
 	/*
 	   This builds the map of cell definitions and summarizes the setup. 
@@ -197,7 +203,7 @@ void setup_tissue( void )
 		Cell* pC = (*all_cells)[n]; 
 		if( pC->type_name == "epithelial" )
 		{
-			if( fabs(pC->position[0]) < 100 && fabs(pC->position[1]) < 100 )
+			if( fabs(pC->position[0]) < 50 && fabs(pC->position[1]) < 50 )
 			{ set_single_behavior( pC , "necrosis" , 9e9); }
 		}
 
@@ -259,7 +265,7 @@ void epithelial_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
 	double dnM = 0.01; 
 
 	double da0 = get_single_base_behavior( pCell , "apoptosis");
-	double daM = 1000 * da0; 
+	double daM = 100 * da0; 
 
 	// calculate parameters based on rules 
 	// write parameter values
@@ -282,3 +288,95 @@ void epithelial_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
 	
 	// return
 }
+
+void macrophage_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
+{
+	// check for dead behavior 
+	if( get_single_signal( pCell , "apoptotic") > 0.5 )
+	{
+		set_single_behavior( pCell, "apoptotic debris secretion" , 1); 
+		set_single_behavior( pCell, "necrotic debris secretion" , 0); 
+
+		pCell->functions.update_phenotype = NULL; 
+		return; 
+	}
+	if( get_single_signal( pCell , "necrotic") > 0.5 )
+	{
+		set_single_behavior( pCell, "apoptotic debris secretion" , 0); 
+		set_single_behavior( pCell, "necrotic debris secretion" , 1);
+
+		pCell->functions.update_phenotype = NULL; 
+		return; 
+	}
+
+	// sample signals 
+	double nd = get_single_signal( pCell , "necrotic debris"); 
+	double v= get_single_signal( pCell , "volume"); 
+
+	// get base / reference parameters 
+
+	double s0 = get_single_base_behavior( pCell , "pro-inflammatory signal secretion"); 
+	double sM = 100*s0; 
+
+	double pr0 = get_single_base_behavior( pCell , "phagocytose dead cell"); 
+	double prM = 0.01 * pr0; 
+	
+	// calculate parameters based on rules 
+	// write parameter values
+
+		// necrotic debris increases inflamatory signalign 
+	double s = s0 + (sM-s0) * Hill_response_function( nd , 0.1 , 2 ); 
+	set_single_behavior( pCell , "pro-inflammatory signal secretion" , s); 
+	
+		// large volume decdreaes phagocytosis 
+	double pr = pr0 + (prM-pr0) * Hill_response_function( v , 4000 , 2); 
+	set_single_behavior( pCell , "phagocytose dead cell" , pr); 
+	
+	// return
+}
+ 
+void fibroblast_phenotype( Cell* pCell, Phenotype& phenotype , double dt )
+{
+	// check for dead behavior 
+	if( get_single_signal( pCell , "apoptotic") > 0.5 )
+	{
+		set_single_behavior( pCell, "apoptotic debris secretion" , 1); 
+		set_single_behavior( pCell, "necrotic debris secretion" , 0); 
+
+		pCell->functions.update_phenotype = NULL; 
+		return; 
+	}
+	if( get_single_signal( pCell , "necrotic") > 0.5 )
+	{
+		set_single_behavior( pCell, "apoptotic debris secretion" , 0); 
+		set_single_behavior( pCell, "necrotic debris secretion" , 1);
+
+		pCell->functions.update_phenotype = NULL; 
+		return; 
+	}
+
+	// sample signals 
+	double pis = get_single_signal( pCell , "pro-inflammatory signal"); 
+
+	// get base / reference parameters 
+
+	double sf0 = get_single_base_behavior( pCell , "fibrosis secretion"); 
+	double sfM = 10; 
+
+	double s0 = get_single_base_behavior( pCell , "migration speed"); 
+	double sM = 0.01 * s0; 
+	
+	// calculate parameters based on rules 
+	// write parameter values
+
+		// inflammatory signal increases fibrobis 
+	double s = s0 + (sM-s0) * Hill_response_function( pis , 0.1 , 2 ); 
+	set_single_behavior( pCell , "migration speed" , s); 
+	
+		// inflammatory signal slows migration 
+	double sf = sf0 + (sfM-sf0) * Hill_response_function( pis , 0.1 , 2 ); 
+	set_single_behavior( pCell , "fibrosis secretion" , sf); 
+	
+	// return
+}
+  
