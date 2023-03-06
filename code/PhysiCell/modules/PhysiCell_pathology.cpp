@@ -33,7 +33,7 @@
 #                                                                             #
 # BSD 3-Clause License (see https://opensource.org/licenses/BSD-3-Clause)     #
 #                                                                             #
-# Copyright (c) 2015-2021, Paul Macklin and the PhysiCell Project             #
+# Copyright (c) 2015-2023, Paul Macklin and the PhysiCell Project             #
 # All rights reserved.                                                        #
 #                                                                             #
 # Redistribution and use in source and binary forms, with or without          #
@@ -685,8 +685,9 @@ std::vector<std::string> paint_by_number_cell_coloring( Cell* pCell )
 	if( pCell->type < 13 )
 	{ interior_color = colors[ pCell->type ]; }
 	
+/*	
 	output[0] = interior_color; // set cytoplasm color 
-	
+
 	if( pCell->phenotype.death.dead == false ) // if live, color nucleus same color 
 	{
 		output[2] = interior_color; 
@@ -700,11 +701,31 @@ std::vector<std::string> paint_by_number_cell_coloring( Cell* pCell )
 			pCell->phenotype.cycle.current_phase().code == PhysiCell_constants::necrotic_lysed || 
 			pCell->phenotype.cycle.current_phase().code == PhysiCell_constants::necrotic )
 		{
-			output[2] = "rgb(139,69,19)";
-			output[3] = "rgb(139,69,19)";
+			output[2] = "saddlebrown"; // "rgb(139,69,19)";
+			output[3] = "saddlebrown"; // "rgb(139,69,19)";
 		}
 	}
-	
+*/
+
+	// new March 2023 (for better compatibility with studio)
+
+	// if dead, use live color for the outline
+	if( pCell->phenotype.death.dead == true )
+	{ output[1] = interior_color; } 
+
+	// necrotic cells are brown 
+	if( pCell->phenotype.cycle.current_phase().code == PhysiCell_constants::necrotic_swelling || 
+		pCell->phenotype.cycle.current_phase().code == PhysiCell_constants::necrotic_lysed || 
+		pCell->phenotype.cycle.current_phase().code == PhysiCell_constants::necrotic )
+	{ interior_color = "saddlebrown"; }
+	// apoptotic cells are white 
+	if( pCell->phenotype.cycle.current_phase().code == PhysiCell_constants::apoptotic ) 
+	{ interior_color = "white"; }
+
+	output[0] = interior_color; // set cytoplasm color 
+	output[2] = interior_color; // set cytoplasm color 
+	output[3] = interior_color; // set cytoplasm color 
+
 	return output; 
 }	
 
