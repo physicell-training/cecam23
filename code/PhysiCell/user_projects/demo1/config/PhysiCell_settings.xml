@@ -96,7 +96,7 @@
             <phenotype>
                 <cycle code="5" name="live">
                     <phase_durations units="min">
-                        <duration index="0" fixed_duration="false">1000</duration>
+                        <duration index="0" fixed_duration="false">1800</duration>
                     </phase_durations>
                 </cycle>
                 <death>
@@ -301,16 +301,16 @@
                         <enabled>true</enabled>
                         <use_2D>true</use_2D>
                         <chemotaxis>
-                            <enabled>false</enabled>
+                            <enabled>true</enabled>
                             <substrate>prey</substrate>
                             <direction>1</direction>
                         </chemotaxis>
                         <advanced_chemotaxis>
-                            <enabled>true</enabled>
+                            <enabled>false</enabled>
                             <normalize_each_gradient>false</normalize_each_gradient>
                             <chemotactic_sensitivities>
-                                <chemotactic_sensitivity substrate="prey">2</chemotactic_sensitivity>
-                                <chemotactic_sensitivity substrate="predator">-1</chemotactic_sensitivity>
+                                <chemotactic_sensitivity substrate="prey">1</chemotactic_sensitivity>
+                                <chemotactic_sensitivity substrate="predator">-100</chemotactic_sensitivity>
                             </chemotactic_sensitivities>
                         </advanced_chemotaxis>
                     </options>
@@ -333,7 +333,7 @@
                     <dead_phagocytosis_rate units="1/min">0</dead_phagocytosis_rate>
                     <live_phagocytosis_rates>
                         <phagocytosis_rate name="epithelial" units="1/min">0</phagocytosis_rate>
-                        <phagocytosis_rate name="prey" units="1/min">0.001</phagocytosis_rate>
+                        <phagocytosis_rate name="prey" units="1/min">0.01</phagocytosis_rate>
                         <phagocytosis_rate name="predator" units="1/min">0.0</phagocytosis_rate>
                     </live_phagocytosis_rates>
                     <attack_rates>

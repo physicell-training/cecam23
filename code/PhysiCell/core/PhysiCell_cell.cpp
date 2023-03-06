@@ -500,8 +500,6 @@ void Cell::assign_orientation()
 	return; 
 }
 
-
-
 Cell* Cell::divide( )
 {
 	// phenotype.flagged_for_division = false; 
