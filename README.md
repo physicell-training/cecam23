@@ -54,18 +54,19 @@ The setup guides should already suggest ImageMagick. We also recommend [Microsof
 #### Plenary (11.30-12.30)
 Detangling complex multicellular systems with agent-based modeling - Paul Macklin 
 * Slides: [click here](https://github.com/physicell-training/cecam23/raw/main/slides/CECAM_ecm23_macklin_keynote.pdf)
-* Recording 
+* Recording [click here] (https://epfl.zoom.us/rec/play/n8KFlrt4hWM6kS1lezhrwCNDK44bFMT_rN6w1Wtn4yH9S0inG6_BndE9swmclsPhAXdV4bfimV5MSa11.BFFJiRvErLc8i19y)
 
 #### Tutorial Session 1 (First PhysiCell model) (12.30-13.30)
 An hands-on tutorial that introduces the model builder GUI - Lead by Paul Macklin
 * Slides: [click here](https://github.com/physicell-training/cecam23/raw/main/slides/CECAM_ecm23_demo1.pdf) 
-* Recording:  
+* Basic Modelling Workflow Recording: [click here] (https://epfl.zoom.us/rec/play/Z-83b0kbh4xncpBI0Lajiqf33zNWnEcaI5MAUYhmMVqVVWdIxK10QgBxvt8KUyO_3opYeLszvd9-pDMj.uKQqMjMNaQsWjPJ6)
+* Intermediate Modelling Workflow Recording: [click here] (https://epfl.zoom.us/rec/play/zoa-wRMNuGA4lQS9TW6cxOQYySV6CVcBLs8Vfgkzg6RFwQiNVCxHmC1wEN69d8pHJWZUtLkWXD5RGXS8.1l69AwjkObR5rzRE)
 * Source code: Use `make load PROJ=demo1` to load the full source. _ 
 
 #### Tutorial Session 2 (Full modeling workflow) (14.30-16.00)
 An introduction to signals, behaviours, functions, and a full modelling example - Lead by Paul Macklin 
 * Slides 
-* Recording 
+* Full Modelling Workflow Recording: [click here](https://epfl.zoom.us/rec/play/OIRWvIuY50TIOFHeekhTsEiTOb1t1sr7cDpQcMwmJDlRvFV1qi5YBKIxpIgGNFo8eVXfDh2yqdzfp8pA.Zxn_o36aCW8mRnec)
 * Source code 
 
 #### 
@@ -76,7 +77,7 @@ An introduction to signals, behaviours, functions, and a full modelling example 
 #### Tutorial Session 3 (Modelling the ECM as a substrate) (11.30-12.30)
 An introduction to substrates and ECM continuum approaches in PhysiCell - Lead by Robyn Shuttleworth
 * Slides 
-* Recording 
+* Recording [click here] (https://epfl.zoom.us/rec/play/u-NhBrhNy-JvLb6RH63hplSA6UIhQg3Y3MXYjUMRxTGbWRl3oIxu2i8VIAuAKmDPMD0Rr-bkOVYT-AiN.LVxaQSwDh8SSHDf4)
 * Source code 
 
 #### Tutorial Session 4 (Introducing PhysiMESS) (13.30-15.00)
