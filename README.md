@@ -59,14 +59,14 @@ Detangling complex multicellular systems with agent-based modeling - Paul Mackli
 #### Tutorial Session 1 (First PhysiCell model) (12.30-13.30)
 An hands-on tutorial that introduces the model builder GUI - Lead by Paul Macklin
 * Slides: [click here](https://github.com/physicell-training/cecam23/raw/main/slides/CECAM_ecm23_demo1.pdf) 
-* Basic Modelling Workflow Recording: https://epfl.zoom.us/rec/play/Z-83b0kbh4xncpBI0Lajiqf33zNWnEcaI5MAUYhmMVqVVWdIxK10QgBxvt8KUyO_3opYeLszvd9-pDMj.uKQqMjMNaQsWjPJ6
-* Intermediate Modelling Workflow Recording: https://epfl.zoom.us/rec/play/zoa-wRMNuGA4lQS9TW6cxOQYySV6CVcBLs8Vfgkzg6RFwQiNVCxHmC1wEN69d8pHJWZUtLkWXD5RGXS8.1l69AwjkObR5rzRE
+* Basic Modelling Workflow Recording: [click here](https://epfl.zoom.us/rec/play/Z-83b0kbh4xncpBI0Lajiqf33zNWnEcaI5MAUYhmMVqVVWdIxK10QgBxvt8KUyO_3opYeLszvd9-pDMj.uKQqMjMNaQsWjPJ6)
+* Intermediate Modelling Workflow Recording: [click here](https://epfl.zoom.us/rec/play/zoa-wRMNuGA4lQS9TW6cxOQYySV6CVcBLs8Vfgkzg6RFwQiNVCxHmC1wEN69d8pHJWZUtLkWXD5RGXS8.1l69AwjkObR5rzRE)
 * Source code: Use `make load PROJ=demo1` to load the full source. _ 
 
 #### Tutorial Session 2 (Full modeling workflow) (14.30-16.00)
 An introduction to signals, behaviours, functions, and a full modelling example - Lead by Paul Macklin 
 * Slides 
-* Full Modelling Workflow Recording: https://epfl.zoom.us/rec/play/OIRWvIuY50TIOFHeekhTsEiTOb1t1sr7cDpQcMwmJDlRvFV1qi5YBKIxpIgGNFo8eVXfDh2yqdzfp8pA.Zxn_o36aCW8mRnec
+* Full Modelling Workflow Recording: [click here](https://epfl.zoom.us/rec/play/OIRWvIuY50TIOFHeekhTsEiTOb1t1sr7cDpQcMwmJDlRvFV1qi5YBKIxpIgGNFo8eVXfDh2yqdzfp8pA.Zxn_o36aCW8mRnec)
 * Source code 
 
 #### 
@@ -77,16 +77,16 @@ An introduction to signals, behaviours, functions, and a full modelling example 
 #### Tutorial Session 3 (Modelling the ECM as a substrate) (11.30-12.30)
 An introduction to substrates and ECM continuum approaches in PhysiCell - Lead by Robyn Shuttleworth
 * Slides 
-* Recording https://epfl.zoom.us/rec/play/u-NhBrhNy-JvLb6RH63hplSA6UIhQg3Y3MXYjUMRxTGbWRl3oIxu2i8VIAuAKmDPMD0Rr-bkOVYT-AiN.LVxaQSwDh8SSHDf4
+* Recording [click here](https://epfl.zoom.us/rec/play/u-NhBrhNy-JvLb6RH63hplSA6UIhQg3Y3MXYjUMRxTGbWRl3oIxu2i8VIAuAKmDPMD0Rr-bkOVYT-AiN.LVxaQSwDh8SSHDf4)
 * Source code 
 
 #### Tutorial Session 4 (Introducing PhysiMESS) (13.30-15.00)
 An introduction to PhysiMESS and modelling the ECM components as additional agents - Lead by Cicely Macnamara 
 
 This tutorial will follow on from intial setup as per [setup guide](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_setup_guide.pdf)
-* Slides [access here](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_walkthrough.pdf)
+* Slides [click here](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_walkthrough.pdf)
 * Recording 
-* Source Code [access here](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS) 
+* Source Code [click here](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS) 
 
 ### Wednesday
 
