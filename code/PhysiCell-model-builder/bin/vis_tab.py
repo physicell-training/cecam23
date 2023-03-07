@@ -1520,6 +1520,86 @@ class Vis(QWidget):
         return collection
 
     #------------------------------------------------------------
+    # to put here the same function rectangles in https://gist.github.com/syrte/592a062c562cd2a98a83 to draw the fiber
+
+    def rectangles(self, x, y, w, h=None, rot=0.0, c='b', vmin=None, vmax=None, **kwargs):
+        """
+        Make a scatter plot of rectangles.
+        Parameters
+        ----------
+        x, y : scalar or array_like, shape (n, )
+            Center of rectangles.
+        w, h : scalar or array_like, shape (n, )
+            Width, Height.
+            `h` is set to be equal to `w` by default, ie. squares.
+        rot : scalar or array_like, shape (n, )
+            Rotation in degrees (anti-clockwise).
+        c : color or sequence of color, optional, default : 'b'
+            `c` can be a single color format string, or a sequence of color
+            specifications of length `N`, or a sequence of `N` numbers to be
+            mapped to colors using the `cmap` and `norm` specified via kwargs.
+            Note that `c` should not be a single numeric RGB or RGBA sequence
+            because that is indistinguishable from an array of values
+            to be colormapped. (If you insist, use `color` instead.)
+            `c` can be a 2-D array in which the rows are RGB or RGBA, however.
+        vmin, vmax : scalar, optional, default: None
+            `vmin` and `vmax` are used in conjunction with `norm` to normalize
+            luminance data.  If either are `None`, the min and max of the
+            color array is used.
+        kwargs : `~matplotlib.collections.Collection` properties
+            Eg. alpha, edgecolor(ec), facecolor(fc), linewidth(lw), linestyle(ls),
+            norm, cmap, transform, etc.
+        Returns
+        -------
+        paths : `~matplotlib.collections.PathCollection`
+        Examples
+        --------
+        a = np.arange(11)
+        rectangles(a, a, w=5, h=6, rot=a*30, c=a, alpha=0.5, ec='none')
+        plt.colorbar()
+        License
+        --------
+        This code is under [The BSD 3-Clause License]
+        (http://opensource.org/licenses/BSD-3-Clause)
+        """
+        if np.isscalar(c):
+            kwargs.setdefault('color', c)
+            c = None
+
+        if 'fc' in kwargs:
+            kwargs.setdefault('facecolor', kwargs.pop('fc'))
+        if 'ec' in kwargs:
+            kwargs.setdefault('edgecolor', kwargs.pop('ec'))
+        if 'ls' in kwargs:
+            kwargs.setdefault('linestyle', kwargs.pop('ls'))
+        if 'lw' in kwargs:
+            kwargs.setdefault('linewidth', kwargs.pop('lw'))
+        # You can set `facecolor` with an array for each patch,
+        # while you can only set `facecolors` with a value for all.
+        if h is None:
+            h = w
+        d = np.sqrt(np.square(w) + np.square(h)) / 2.
+        t = np.deg2rad(rot) + np.arctan2(h, w)
+        x, y = x - d * np.cos(t), y - d * np.sin(t)
+
+        zipped = np.broadcast(x, y, w, h, rot)
+        patches = [Rectangle((x_, y_), w_, h_, rot_)
+                   for x_, y_, w_, h_, rot_ in zipped]
+        collection = PatchCollection(patches, **kwargs)
+        if c is not None:
+            c = np.broadcast_to(c, zipped.shape).ravel()
+            collection.set_array(c)
+            collection.set_clim(vmin, vmax)
+
+        ax = plt.gca()
+        ax.add_collection(collection)
+        ax.autoscale_view()
+        plt.draw_if_interactive()
+        if c is not None:
+            plt.sci(collection)
+        return collection
+
+    # ------------------------------------------------------------
     # not currently used, but maybe useful
     def plot_vecs(self):
         # global current_frame
@@ -1657,6 +1737,11 @@ class Vis(QWidget):
         ylist = deque()
         rlist = deque()
         rgba_list = deque()
+        xmlist = deque()
+        ymlist = deque()
+        rotlist = deque()
+        widthlist = deque()
+        lengthlist= deque()
 
         #  print('\n---- ' + fname + ':')
 #        tree = ET.parse(fname)
@@ -1710,75 +1795,105 @@ class Vis(QWidget):
         for child in cells_parent:
             #    print(child.tag, child.attrib)
             #    print('attrib=',child.attrib)
-            for circle in child:  # two circles in each child: outer + nucleus
-                #  circle.attrib={'cx': '1085.59','cy': '1225.24','fill': 'rgb(159,159,96)','r': '6.67717','stroke': 'rgb(159,159,96)','stroke-width': '0.5'}
-                #      print('  --- cx,cy=',circle.attrib['cx'],circle.attrib['cy'])
-                xval = float(circle.attrib['cx'])
+            ## to add here an if sentence to check if the child is an actual cell or a fiber.
+            if(child.attrib["type"] == "fibre"):
+                for line in child:
+                    x1 = float(line.attrib['x1'])
+                    x1 = x1/self.x_range * self.x_range + self.xmin
+                    x2 = float(line.attrib['x2'])
+                    x2 = x2/self.x_range * self.x_range + self.xmin
+                    y1 = float(line.attrib['y1'])
+                    y1 = y1/self.y_range * self.y_range + self.ymin
+                    y2 = float(line.attrib['y2'])
+                    y2 = y2/self.y_range * self.y_range + self.ymin
 
-                # map SVG coords into comp domain
-                # xval = (xval-self.svg_xmin)/self.svg_xrange * self.x_range + self.xmin
-                xval = xval/self.x_range * self.x_range + self.xmin
+                    xm = (x1 + x2) / 2
+                    ym = (y1 + y2) / 2
+                    p1 = np.array([x1, y1])
+                    p2 = np.array([x2, y2])
+                    d = p2 - p1
+                    radians = np.arctan2(d[0], d[1])
+                    angle = np.degrees(radians) % 360
+                    rot = -angle
+                    w = float(line.attrib['stroke-width'])
+                    length = np.sqrt([((x1-x2) * (x1-x2)) + ((y1 - y2) * (y1 - y2))])
+                    xmlist.append(xm)
+                    ymlist.append(ym)
+                    rotlist.append(rot)
+                    widthlist.append(w)
+                    lengthlist.append(length)
 
-                s = circle.attrib['fill']
-                # print("s=",s)
-                # print("type(s)=",type(s))
-                if( s[0:4] == "rgba" ):
-                    # background = bgcolor[0] * 255.0; # coudl also be 255.0 for white
-                    rgba_float =list(map(float,s[5:-1].split(",")))
-                    r = rgba_float[0]
-                    g = rgba_float[1]
-                    b = rgba_float[2]                    
-                    alpha = rgba_float[3]
-                    alpha *= 2.0; # cell_alpha_toggle
-                    if( alpha > 1.0 ):
-                    # if( alpha > 1.0 or self.cell_alpha_toggle.value == False ):
-                        alpha = 1.0
-                    # if( self.cell_alpha_toggle.value == False ):
-                    #     alpha = 1.0;  
+            else:
+                for circle in child:  # two circles in each child: outer + nucleus
+                    #  circle.attrib={'cx': '1085.59','cy': '1225.24','fill': 'rgb(159,159,96)','r': '6.67717','stroke': 'rgb(159,159,96)','stroke-width': '0.5'}
+                    #      print('  --- cx,cy=',circle.attrib['cx'],circle.attrib['cy'])
 
-#                        if( self.substrates_toggle.value and 1 == 2 ):
-#                            r = background * (1-alpha) + alpha*rgba_float[0];
-#                            g = background * (1-alpha) + alpha*rgba_float[1];
-#                            b = background * (1-alpha) + alpha*rgba_float[2];
-                    rgba = [1,1,1,alpha]
-                    rgba[0:3] = [ np.round(r), np.round(g), np.round(b) ]
-                    rgba[0:3] = [x / 255. for x in rgba[0:3] ]  
-                    # rgba = [rgba_float[0]/255.0, rgba_float[1]/255.0, rgba_float[2]/255.0,alpha];
-                    # rgba[0:3] = rgb; 
-                    # rgb = list(map(int, s[5:-1].split(",")))
-                elif (s[0:3] == "rgb"):  # if an rgb string, e.g. "rgb(175,175,80)" 
-                    rgba = [1,1,1,1.0]
-                    rgba[0:3] = list(map(int, s[4:-1].split(",")))  
-                    rgba[0:3] = [x / 255. for x in rgba[0:3] ]
-                else:     # otherwise, must be a color name
-                    rgb_tuple = mplc.to_rgb(mplc.cnames[s])  # a tuple
-                    rgba = [1,1,1,1.0]
-                    rgba[0:3] = [x for x in rgb_tuple]
+                    xval = float(circle.attrib['cx'])
 
-                # test for bogus x,y locations (rwh TODO: use max of domain?)
-                too_large_val = 10000.
-                if (np.fabs(xval) > too_large_val):
-                    print("bogus xval=", xval)
-                    break
-                yval = float(circle.attrib['cy'])
-                # yval = (yval - self.svg_xmin)/self.svg_xrange * self.y_range + self.ymin
-                yval = yval/self.y_range * self.y_range + self.ymin
-                if (np.fabs(yval) > too_large_val):
-                    print("bogus yval=", yval)
-                    break
+                    # map SVG coords into comp domain
+                    # xval = (xval-self.svg_xmin)/self.svg_xrange * self.x_range + self.xmin
+                    xval = xval/self.x_range * self.x_range + self.xmin
 
-                rval = float(circle.attrib['r'])
-                # if (rgb[0] > rgb[1]):
-                #     print(num_cells,rgb, rval)
-                xlist.append(xval)
-                ylist.append(yval)
-                rlist.append(rval)
-                rgba_list.append(rgba)
+                    s = circle.attrib['fill']
+                    # print("s=",s)
+                    # print("type(s)=",type(s))
+                    if( s[0:4] == "rgba" ):
+                        # background = bgcolor[0] * 255.0; # coudl also be 255.0 for white
+                        rgba_float =list(map(float,s[5:-1].split(",")))
+                        r = rgba_float[0]
+                        g = rgba_float[1]
+                        b = rgba_float[2]
+                        alpha = rgba_float[3]
+                        alpha *= 2.0; # cell_alpha_toggle
+                        if( alpha > 1.0 ):
+                        # if( alpha > 1.0 or self.cell_alpha_toggle.value == False ):
+                            alpha = 1.0
+                        # if( self.cell_alpha_toggle.value == False ):
+                        #     alpha = 1.0;
 
-                # For .svg files with cells that *have* a nucleus, there will be a 2nd
-                if (not self.show_nucleus):
-                #if (not self.show_nucleus):
-                    break
+    #                        if( self.substrates_toggle.value and 1 == 2 ):
+    #                            r = background * (1-alpha) + alpha*rgba_float[0];
+    #                            g = background * (1-alpha) + alpha*rgba_float[1];
+    #                            b = background * (1-alpha) + alpha*rgba_float[2];
+                        rgba = [1,1,1,alpha]
+                        rgba[0:3] = [ np.round(r), np.round(g), np.round(b) ]
+                        rgba[0:3] = [x / 255. for x in rgba[0:3] ]
+                        # rgba = [rgba_float[0]/255.0, rgba_float[1]/255.0, rgba_float[2]/255.0,alpha];
+                        # rgba[0:3] = rgb;
+                        # rgb = list(map(int, s[5:-1].split(",")))
+                    elif (s[0:3] == "rgb"):  # if an rgb string, e.g. "rgb(175,175,80)"
+                        rgba = [1,1,1,1.0]
+                        rgba[0:3] = list(map(int, s[4:-1].split(",")))
+                        rgba[0:3] = [x / 255. for x in rgba[0:3] ]
+                    else:     # otherwise, must be a color name
+                        rgb_tuple = mplc.to_rgb(mplc.cnames[s])  # a tuple
+                        rgba = [1,1,1,1.0]
+                        rgba[0:3] = [x for x in rgb_tuple]
+
+                    # test for bogus x,y locations (rwh TODO: use max of domain?)
+                    too_large_val = 10000.
+                    if (np.fabs(xval) > too_large_val):
+                        print("bogus xval=", xval)
+                        break
+                    yval = float(circle.attrib['cy'])
+                    # yval = (yval - self.svg_xmin)/self.svg_xrange * self.y_range + self.ymin
+                    yval = yval/self.y_range * self.y_range + self.ymin
+                    if (np.fabs(yval) > too_large_val):
+                        print("bogus yval=", yval)
+                        break
+
+                    rval = float(circle.attrib['r'])
+                    # if (rgb[0] > rgb[1]):
+                    #     print(num_cells,rgb, rval)
+                    xlist.append(xval)
+                    ylist.append(yval)
+                    rlist.append(rval)
+                    rgba_list.append(rgba)
+
+                    # For .svg files with cells that *have* a nucleus, there will be a 2nd
+                    if (not self.show_nucleus):
+                    #if (not self.show_nucleus):
+                        break
 
             num_cells += 1
 
@@ -1863,6 +1978,7 @@ class Vis(QWidget):
                 # self.circles(xvals,yvals, s=rvals, color=rgbas, alpha=self.alpha, edgecolor='black', linewidth=0.5)
                 # print("--- plotting circles with edges!!")
                 self.circles(xvals,yvals, s=rvals, color=rgbas,  edgecolor='black', linewidth=0.5)
+                self.rectangles(xmlist, ymlist, widthlist, h=lengthlist, rot=rotlist)
                 # cell_circles = self.circles(xvals,yvals, s=rvals, color=rgbs, edgecolor='black', linewidth=0.5)
                 # plt.sci(cell_circles)
             except (ValueError):
