@@ -54,7 +54,7 @@ The setup guides should already suggest ImageMagick. We also recommend [Microsof
 #### Plenary (11.30-12.30)
 Detangling complex multicellular systems with agent-based modeling - Paul Macklin 
 * Slides: [click here](https://github.com/physicell-training/cecam23/raw/main/slides/CECAM_ecm23_macklin_keynote.pdf)
-* Recording https://epfl.zoom.us/rec/play/n8KFlrt4hWM6kS1lezhrwCNDK44bFMT_rN6w1Wtn4yH9S0inG6_BndE9swmclsPhAXdV4bfimV5MSa11.BFFJiRvErLc8i19y
+* Recording: [click here](https://epfl.zoom.us/rec/play/n8KFlrt4hWM6kS1lezhrwCNDK44bFMT_rN6w1Wtn4yH9S0inG6_BndE9swmclsPhAXdV4bfimV5MSa11.BFFJiRvErLc8i19y)
 
 #### Tutorial Session 1 (First PhysiCell model) (12.30-13.30)
 An hands-on tutorial that introduces the model builder GUI - Lead by Paul Macklin
