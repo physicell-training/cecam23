@@ -1,3 +1,5 @@
 
 code/.DS_Store
 .DS_Store
+*.o
+code/PhysiCell/interaction_demo
