@@ -61,13 +61,13 @@ An hands-on tutorial that introduces the model builder GUI - Lead by Paul Mackli
 * Slides: [click here](https://github.com/physicell-training/cecam23/raw/main/slides/CECAM_ecm23_demo1.pdf) 
 * Basic Modelling Workflow Recording: [click here](https://epfl.zoom.us/rec/play/Z-83b0kbh4xncpBI0Lajiqf33zNWnEcaI5MAUYhmMVqVVWdIxK10QgBxvt8KUyO_3opYeLszvd9-pDMj.uKQqMjMNaQsWjPJ6)
 * Intermediate Modelling Workflow Recording: [click here](https://epfl.zoom.us/rec/play/zoa-wRMNuGA4lQS9TW6cxOQYySV6CVcBLs8Vfgkzg6RFwQiNVCxHmC1wEN69d8pHJWZUtLkWXD5RGXS8.1l69AwjkObR5rzRE)
-* Source code: Use `make load PROJ=demo1` to load the full source. _ 
+* Source code: Use `make load PROJ=demo1` to load the full source. 
 
 #### Tutorial Session 2 (Full modeling workflow) (14.30-16.00)
 An introduction to signals, behaviours, functions, and a full modelling example - Lead by Paul Macklin 
 * Slides: [click here](https://github.com/physicell-training/cecam23/raw/main/slides/CECAM_ecm23_demo2.pdf)
 * Full Modelling Workflow Recording: [click here](https://epfl.zoom.us/rec/play/OIRWvIuY50TIOFHeekhTsEiTOb1t1sr7cDpQcMwmJDlRvFV1qi5YBKIxpIgGNFo8eVXfDh2yqdzfp8pA.Zxn_o36aCW8mRnec)
-* Source code: Use `make load PROJ=demo2` to load teh full source. 
+* Source code: Use `make load PROJ=demo2` to load the full source. 
 
 #### 
 
@@ -85,16 +85,6 @@ An introduction to PhysiMESS and modelling the ECM components as additional agen
 
 This tutorial will follow on from intial setup as per [setup guide](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_setup_guide.pdf)
 * Slides [click here](https://github.com/physicell-training/cecam23/raw/main/code/PhysiMESS/setup/PhysiMESS_walkthrough.pdf)
-* Recording 
+* Recording [click here](https://epfl.zoom.us/rec/play/V94jxIylwj4YPKehppGDRgMVs_i8ZoqnwTn3LM2xgQSn-h_Jg7XWxztwrosGt6iMKkyAfxKSlyeBm2ce.KzuGPCLrt0lC_B2R)
 * Source Code [click here](https://github.com/physicell-training/cecam23/tree/main/code/PhysiMESS) 
-
-### Wednesday
-
-#### Tutorial Session 5 (PhysiCell/PhysiMESS troubleshooting) (10.00-11.00)
-Group facilitated troubleshooting
-
-### Thursday
-
-#### Tutorial Session 6 (PhysiCell/PhysiMESS troubleshooting) (10.00-11.00)
-Group facilitated troubleshooting
 
