@@ -78,7 +78,7 @@ An introduction to signals, behaviours, functions, and a full modelling example 
 An introduction to substrates and ECM continuum approaches in PhysiCell - Lead by Robyn Shuttleworth
 * Slides 
 * Recording [click here](https://epfl.zoom.us/rec/play/u-NhBrhNy-JvLb6RH63hplSA6UIhQg3Y3MXYjUMRxTGbWRl3oIxu2i8VIAuAKmDPMD0Rr-bkOVYT-AiN.LVxaQSwDh8SSHDf4)
-* Source code 
+* Source code: required files [pyMCDS.py](https://github.com/physicell-training/cecam23/blob/main/code/PhysiCell/pyMCDS.py) and [Simulation_Printing.ipynb](https://github.com/physicell-training/cecam23/blob/main/code/PhysiCell/Simulation_Printing.ipynb)
 
 #### Tutorial Session 4 (Introducing PhysiMESS) (13.30-15.00)
 An introduction to PhysiMESS and modelling the ECM components as additional agents - Lead by Cicely Macnamara 
