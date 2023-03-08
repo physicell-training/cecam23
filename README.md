@@ -65,9 +65,9 @@ An hands-on tutorial that introduces the model builder GUI - Lead by Paul Mackli
 
 #### Tutorial Session 2 (Full modeling workflow) (14.30-16.00)
 An introduction to signals, behaviours, functions, and a full modelling example - Lead by Paul Macklin 
-* Slides 
+* Slides: [click here](https://github.com/physicell-training/cecam23/raw/main/slides/CECAM_ecm23_demo2.pdf)
 * Full Modelling Workflow Recording: [click here](https://epfl.zoom.us/rec/play/OIRWvIuY50TIOFHeekhTsEiTOb1t1sr7cDpQcMwmJDlRvFV1qi5YBKIxpIgGNFo8eVXfDh2yqdzfp8pA.Zxn_o36aCW8mRnec)
-* Source code 
+* Source code: Use `make load PROJ=demo2` to load teh full source. 
 
 #### 
 
