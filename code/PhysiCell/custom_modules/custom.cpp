@@ -57,7 +57,7 @@
 # LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         #
 # CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF        #
 # SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    #
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN     #
+# INTERRUPTION) HOWEVER CAUSED AND ON1 ANY THEORY OF LIABILITY, WHETHER IN     #
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)     #
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  #
 # POSSIBILITY OF SUCH DAMAGE.                                                 #
@@ -89,8 +89,7 @@ void custom_cell(Cell* pCell, Phenotype& phenotype, double dt) {
 	
 	std::cout << ", quantity of collagen : " << collagen_quantity << std::endl;
 	// Reducing the quantity of collagen by 2% everytime we call this function (every mechanics_dt)
-	microenvironment.density_vector(voxel_membrane)[collagen_index] *= (1.0 - pCell->custom_data["degradation_rate"]);
-	
+	microenvironment.density_vector(voxel_membrane)[collagen_index] *= (1.0 - parameters.doubles("degradation_rate"));
 }
 
 void custom_update_cell_velocity( Cell* pCell, Phenotype& phenotype, double dt)
@@ -242,3 +241,29 @@ void custom_function( Cell* pCell, Phenotype& phenotype , double dt )
 
 void contact_function( Cell* pMe, Phenotype& phenoMe , Cell* pOther, Phenotype& phenoOther , double dt )
 { return; } 
+
+void degrade_matrix()
+{
+	// Get the index of the MMP and Collagen substrate
+	int collagen_index = microenvironment.find_density_index("collagen");
+	int mmp_index = microenvironment.find_density_index("mmp");
+
+	// Loop over all the voxel in the domain
+	#pragma omp parallel for
+	for (int i = 0; i<microenvironment.number_of_voxels(); i++)
+	{
+		// Get the density of Collagen and MMP in the current voxel
+		double collagen_density = microenvironment.density_vector(i)[collagen_index];
+		double mmp_density = microenvironment.density_vector(i)[mmp_index];
+		
+		// Compute the degradation rate depending on the user parameter and
+		// the density of both Collagen and MMP
+		double degradation_rate = parameters.doubles("degradation_rate") * mmp_density * (1-collagen_density);
+
+		// Compute the new collagen density to simulate degradation
+		collagen_density *= 1 - degradation_rate;
+
+		// Update the current voxel with the new collagen density
+		microenvironment.density_vector(i)[collagen_index] = collagen_density;
+	}
+}
