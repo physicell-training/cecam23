@@ -67,6 +67,36 @@
 
 #include "./custom.h"
 
+void degrade_matrix_soluble_mmp()
+{
+	// Get the index of the MMP and Collagen substrate
+	int collagen_index = microenvironment.find_density_index("collagen");
+	int mmp_index = microenvironment.find_density_index("mmp");
+
+	//Finding the crosslinks substrate index
+	int crosslinks_index = microenvironment.find_density_index("crosslinks");
+
+	// Loop over all the voxel in the domain
+	#pragma omp parallel for
+	for (int voxel_index = 0; voxel_index<microenvironment.number_of_voxels(); voxel_index++)
+	{	
+		// Get the density of Collagen and MMP in the current voxel
+		double collagen_density = microenvironment.density_vector(voxel_index)[collagen_index];
+		double mmp_density = microenvironment.density_vector(voxel_index)[mmp_index];
+		double crosslinking_quantity = microenvironment.density_vector(voxel_index)[crosslinks_index];
+
+		// Compute the degradation rate depending on the user parameter and
+		// the density of both Collagen and MMP
+		double degradation_rate_soluble_mmp = parameters.doubles("degradation_rate_soluble_mmp") * mmp_density * (1.1 - crosslinking_quantity) * (1.1 - collagen_density);
+		
+		// Compute the new collagen density to simulate degradation
+		collagen_density *= (1 - degradation_rate_soluble_mmp); 
+		
+		// Update the current voxel with the new collagen density
+		microenvironment.density_vector(voxel_index)[collagen_index] = collagen_density;
+	}
+}
+
 void custom_cell(Cell* pCell, Phenotype& phenotype, double dt) {
 	
 	// Scaling our orientation to the radius of the cell
@@ -78,14 +108,20 @@ void custom_cell(Cell* pCell, Phenotype& phenotype, double dt) {
 	// Computing the index of the voxel at that position
 	int voxel_membrane = microenvironment.nearest_voxel_index( position_membrane );
 	
-	// Finding the substrate index
+	// Finding the collagen substrate index
 	int collagen_index = microenvironment.find_density_index("collagen");
 	
 	// Finding out the quantity of collagen in that voxel
 	double collagen_quantity = microenvironment.density_vector(voxel_membrane)[collagen_index];
+
+	//Finding the crosslinks substrate index
+	int crosslinks_index = microenvironment.find_density_index("crosslinks");
+
+	// Finding out the crosslinking average in that voxel
+	double crosslinking_quantity = microenvironment.density_vector(voxel_membrane)[crosslinks_index];
 	
 	// Reducing the quantity of collagen by 2% everytime we call this function (every mechanics_dt)
-	microenvironment.density_vector(voxel_membrane)[collagen_index] *= (1.0 - parameters.doubles("degradation_rate_membrane_mmp"));
+	microenvironment.density_vector(voxel_membrane)[collagen_index] *=  (1.0 - parameters.doubles("degradation_rate_membrane_mmp")*(1.1 - crosslinking_quantity)); //
 }
 
 void custom_update_cell_velocity( Cell* pCell, Phenotype& phenotype, double dt)
@@ -239,31 +275,3 @@ void custom_function( Cell* pCell, Phenotype& phenotype , double dt )
 
 void contact_function( Cell* pMe, Phenotype& phenoMe , Cell* pOther, Phenotype& phenoOther , double dt )
 { return; } 
-
-void degrade_matrix()
-{
-	// Get the index of the MMP and Collagen substrate
-	int collagen_index = microenvironment.find_density_index("collagen");
-	int mmp_index = microenvironment.find_density_index("mmp");
-
-	// Loop over all the voxel in the domain
-	#pragma omp parallel for
-	for (int i = 0; i<microenvironment.number_of_voxels(); i++)
-	{
-		// Get the density of Collagen and MMP in the current voxel
-		double collagen_density = microenvironment.density_vector(i)[collagen_index];
-		double mmp_density = microenvironment.density_vector(i)[mmp_index];
-		
-		// Compute the degradation rate depending on the user parameter and
-		// the density of both Collagen and MMP
-		double degradation_rate_soluble_mmp = parameters.doubles("degradation_rate_soluble_mmp") * mmp_density * (1-collagen_density);
-
-		// TODO: modify the degradation rate depending on the cross-links percentage
-		
-		// Compute the new collagen density to simulate degradation
-		collagen_density *= 1 - degradation_rate_soluble_mmp;
-
-		// Update the current voxel with the new collagen density
-		microenvironment.density_vector(i)[collagen_index] = collagen_density;
-	}
-}

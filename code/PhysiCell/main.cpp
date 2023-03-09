@@ -223,7 +223,7 @@ int main( int argc, char* argv[] )
 			*/
 			if( fabs(PhysiCell_globals.current_time - cell_container->last_mechanics_time) < 0.001 * mechanics_dt)
 			{
-				degrade_matrix();
+				degrade_matrix_soluble_mmp();
 			}
 
 			PhysiCell_globals.current_time += diffusion_dt;
