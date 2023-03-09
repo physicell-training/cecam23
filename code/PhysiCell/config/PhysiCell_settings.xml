@@ -23,17 +23,17 @@
     </overall>
 
     <parallel>
-        <omp_num_threads>6</omp_num_threads>
+        <omp_num_threads>1</omp_num_threads>
     </parallel>
 
     <save>
         <folder>output</folder>
         <full_data>
-            <interval units="min">10</interval>
+            <interval units="min">5</interval>
             <enable>true</enable>
         </full_data>
         <SVG>
-            <interval units="min">10</interval>
+            <interval units="min">5</interval>
             <enable>true</enable>
         </SVG>
         <legacy_data>
@@ -52,7 +52,7 @@
                 <diffusion_coefficient units="micron^2/min">0</diffusion_coefficient>
                 <decay_rate units="1/min">0</decay_rate>
             </physical_parameter_set>
-            <initial_condition units="mmHg">1</initial_condition>
+            <initial_condition units="mmHg">0.5</initial_condition>
             <Dirichlet_boundary_condition units="mmHg" enabled="False">0</Dirichlet_boundary_condition>
             <Dirichlet_options>
                 <boundary_value ID="xmin" enabled="False">0</boundary_value>
@@ -82,7 +82,7 @@
         <variable name="mmp" units="dimensionless" ID="2">
           <physical_parameter_set>
               <diffusion_coefficient units="micron^2/min">5.0</diffusion_coefficient>
-              <decay_rate units="1/min">0.9</decay_rate>
+              <decay_rate units="1/min">0.09</decay_rate>
           </physical_parameter_set>
           <initial_condition units="mmHg">0</initial_condition>
           <Dirichlet_boundary_condition units="mmHg" enabled="False">0</Dirichlet_boundary_condition>
@@ -211,7 +211,7 @@
                         <net_export_rate units="total substrate/min">0.0</net_export_rate>
                     </substrate>
                     <substrate name="mmp">
-                      <secretion_rate units="1/min">0.001</secretion_rate>
+                      <secretion_rate units="1/min">0.1</secretion_rate>
                       <secretion_target units="substrate density">1.0</secretion_target>
                       <uptake_rate units="1/min">0.0</uptake_rate>
                       <net_export_rate units="total substrate/min">0.0</net_export_rate>
@@ -255,6 +255,7 @@
     <user_parameters>
         <random_seed type="int" units="dimensionless" description="">0</random_seed>
         <number_of_cells type="int" units="none" description="initial number of cells (for each cell type)">1</number_of_cells>
-        <degradation_rate type="double" units="dimensionless" description="Degration ate of the collagen">0.001</degradation_rate>
+        <degradation_rate_membrane_mmp type="double" units="dimensionless" description="Degration rate of the collagen by Membrane-bound MMPs">0.0</degradation_rate_membrane_mmp>
+        <degradation_rate_soluble_mmp type="double" units="dimensionless" description="Degration rate of the collagen by soluble MMPs">0.05</degradation_rate_soluble_mmp>
     </user_parameters>
 </PhysiCell_settings>

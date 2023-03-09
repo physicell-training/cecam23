@@ -75,9 +75,6 @@ void custom_cell(Cell* pCell, Phenotype& phenotype, double dt) {
 	// Calculating the position of the membrane in the direction of the cell
 	std::vector<double> position_membrane = pCell->position + scaled_orientation;
 	
-	// Printing it for checking
-	std::cout << "Position : " << pCell->position << ", position at membrane : " << position_membrane;
-	
 	// Computing the index of the voxel at that position
 	int voxel_membrane = microenvironment.nearest_voxel_index( position_membrane );
 	
@@ -87,13 +84,14 @@ void custom_cell(Cell* pCell, Phenotype& phenotype, double dt) {
 	// Finding out the quantity of collagen in that voxel
 	double collagen_quantity = microenvironment.density_vector(voxel_membrane)[collagen_index];
 	
-	std::cout << ", quantity of collagen : " << collagen_quantity << std::endl;
 	// Reducing the quantity of collagen by 2% everytime we call this function (every mechanics_dt)
-	microenvironment.density_vector(voxel_membrane)[collagen_index] *= (1.0 - parameters.doubles("degradation_rate"));
+	microenvironment.density_vector(voxel_membrane)[collagen_index] *= (1.0 - parameters.doubles("degradation_rate_membrane_mmp"));
 }
 
 void custom_update_cell_velocity( Cell* pCell, Phenotype& phenotype, double dt)
 {
+	// TODO: Update the speed of the cell depending on the ECM
+
 	// Calling the standard update velocity of PhysiCell
 	standard_update_cell_velocity(pCell, phenotype, dt);
 	
@@ -258,10 +256,12 @@ void degrade_matrix()
 		
 		// Compute the degradation rate depending on the user parameter and
 		// the density of both Collagen and MMP
-		double degradation_rate = parameters.doubles("degradation_rate") * mmp_density * (1-collagen_density);
+		double degradation_rate_soluble_mmp = parameters.doubles("degradation_rate_soluble_mmp") * mmp_density * (1-collagen_density);
 
+		// TODO: modify the degradation rate depending on the cross-links percentage
+		
 		// Compute the new collagen density to simulate degradation
-		collagen_density *= 1 - degradation_rate;
+		collagen_density *= 1 - degradation_rate_soluble_mmp;
 
 		// Update the current voxel with the new collagen density
 		microenvironment.density_vector(i)[collagen_index] = collagen_density;
