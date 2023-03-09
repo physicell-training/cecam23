@@ -121,13 +121,39 @@ void custom_cell(Cell* pCell, Phenotype& phenotype, double dt) {
 	double crosslinking_quantity = microenvironment.density_vector(voxel_membrane)[crosslinks_index];
 	
 	// Reducing the quantity of collagen by 2% everytime we call this function (every mechanics_dt)
-	microenvironment.density_vector(voxel_membrane)[collagen_index] *=  (1.0 - parameters.doubles("degradation_rate_membrane_mmp")*(1.1 - crosslinking_quantity)); //
+	microenvironment.density_vector(voxel_membrane)[collagen_index] *=  (1.0 - parameters.doubles("degradation_rate_membrane_mmp")*(1.1 - crosslinking_quantity)); 
 }
 
 void custom_update_cell_velocity( Cell* pCell, Phenotype& phenotype, double dt)
 {
-	// TODO: Update the speed of the cell depending on the ECM
+	///////////////// Update migration speed //////////////////////////
+	// Scaling our orientation to the radius of the cell
+	std::vector<double> scaled_orientation = phenotype.geometry.radius * pCell->state.orientation;
+	
+	// Calculating the position of the membrane in the direction of the cell
+	std::vector<double> position_membrane = pCell->position + scaled_orientation;
+	
+	// Computing the index of the voxel at that position
+	int voxel_membrane = microenvironment.nearest_voxel_index( position_membrane );
 
+	// Finding the collagen substrate index
+	int collagen_index = microenvironment.find_density_index("collagen");
+	
+	// Finding out the quantity of collagen in that voxel
+	double collagen_quantity = microenvironment.density_vector(voxel_membrane)[collagen_index];
+
+	// Base migration speed
+	double base_migration_speed = get_single_base_behavior(pCell, "migration speed") ;
+	// std::cout << "Base migration speed: " << base_migration_speed << std::endl;
+
+	// Calculate collagen dependent speed
+	double collagen_dependent_speed = 4 * collagen_quantity * (1-collagen_quantity);
+
+	pCell->phenotype.motility.migration_speed = collagen_dependent_speed * base_migration_speed;
+	// std::cout << "New speed: " << pCell->phenotype.motility.migration_speed << std::endl;
+
+	///////////////////////// Update standard velocity /////////////////////////////
+	
 	// Calling the standard update velocity of PhysiCell
 	standard_update_cell_velocity(pCell, phenotype, dt);
 	

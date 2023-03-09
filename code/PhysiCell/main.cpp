@@ -215,9 +215,6 @@ int main( int argc, char* argv[] )
 			// update the microenvironment
 			microenvironment.simulate_diffusion_decay( diffusion_dt );
 			
-			// run PhysiCell 
-			((Cell_Container *)microenvironment.agent_container)->update_all_cells( PhysiCell_globals.current_time );
-			
 			/*
 			  Custom add-ons could potentially go here. 
 			*/
@@ -225,6 +222,9 @@ int main( int argc, char* argv[] )
 			{
 				degrade_matrix_soluble_mmp();
 			}
+			
+			// run PhysiCell 
+			((Cell_Container *)microenvironment.agent_container)->update_all_cells( PhysiCell_globals.current_time );
 
 			PhysiCell_globals.current_time += diffusion_dt;
 		}
