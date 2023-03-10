@@ -215,6 +215,8 @@ int main( int argc, char* argv[] )
 			// update the microenvironment
 			microenvironment.simulate_diffusion_decay( diffusion_dt );
 			
+			stiffness_substrate_calculation(diffusion_dt);
+
 			/*
 			  Custom add-ons could potentially go here. 
 			*/
