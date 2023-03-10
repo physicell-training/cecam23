@@ -220,7 +220,7 @@ int main( int argc, char* argv[] )
 			/*
 			  Custom add-ons could potentially go here. 
 			*/
-			if( fabs(PhysiCell_globals.current_time - cell_container->last_mechanics_time) < 0.001 * mechanics_dt)
+			if( fabs(PhysiCell_globals.current_time - (cell_container->last_mechanics_time + mechanics_dt)) < 0.01 * mechanics_dt)
 			{
 				degrade_matrix_soluble_mmp();
 			}
