@@ -74,7 +74,7 @@ void stiffness_substrate_calculation(double dt)
 	static int collagen_index = microenvironment.find_density_index("collagen");
 	static int crosslinks_index = microenvironment.find_density_index("crosslinks");
 	static int stiffness_index = microenvironment.find_density_index("stiffness");
-​
+
 		//iterate thorugh voxels
 			//read values 
 			//calculate
@@ -85,9 +85,9 @@ void stiffness_substrate_calculation(double dt)
 			double c = rho[ collagen_index ];
 			double cl = rho[ crosslinks_index ];
 			double s = rho[ stiffness_index ];
-​
+
 			double dc = c * cl;
-​
+
 			microenvironment(n)[stiffness_index] = dc;	
 		}
 	return;
