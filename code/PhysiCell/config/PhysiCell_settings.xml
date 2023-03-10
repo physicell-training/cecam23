@@ -23,7 +23,7 @@
     </overall>
 
     <parallel>
-        <omp_num_threads>4</omp_num_threads>
+        <omp_num_threads>1</omp_num_threads>
     </parallel>
 
     <save>
@@ -195,7 +195,7 @@
                     <persistence_time units="min">5</persistence_time>
                     <migration_bias units="dimensionless">.5</migration_bias>
                     <options>
-                        <enabled>false</enabled>
+                        <enabled>true</enabled>
                         <use_2D>true</use_2D>
                         <chemotaxis>
                             <enabled>true</enabled>
@@ -228,7 +228,7 @@
                         <net_export_rate units="total substrate/min">0.0</net_export_rate>
                     </substrate>
                     <substrate name="mmp">
-                        <secretion_rate units="1/min">0.0</secretion_rate>
+                        <secretion_rate units="1/min">0.1</secretion_rate>
                         <secretion_target units="substrate density">1.0</secretion_target>
                         <uptake_rate units="1/min">0.0</uptake_rate>
                         <net_export_rate units="total substrate/min">0.0</net_export_rate>
@@ -282,5 +282,6 @@
         <degradation_rate_membrane_mmp type="double" units="dimensionless" description="Degration rate of the collagen by Membrane-bound MMPs">0.001</degradation_rate_membrane_mmp>
         <degradation_rate_soluble_mmp type="double" units="dimensionless" description="Degration rate of the collagen by soluble MMPs">0.001</degradation_rate_soluble_mmp>
         <secretion_rate_soluble_mmp type="double" units="dimensionless" description="Secretion rate of soluble MMPs by the cell">0.1</secretion_rate_soluble_mmp>
+        <emt_transition type="bool" units="dimensionless" description="Should we simulate the EMT transition">false</emt_transition>
     </user_parameters>
 </PhysiCell_settings>

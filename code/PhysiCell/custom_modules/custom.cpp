@@ -307,25 +307,29 @@ void phenotype_function( Cell* pCell, Phenotype& phenotype, double dt )
 	// Update the cell division and apoptosis rate depending on the extracellular oxygen concentration
     update_cell_and_death_parameters_O2_based(pCell,phenotype,dt);
 
-	// Get oxygen substrate index
-	int oxygen_index = microenvironment.find_density_index("oxygen");
-
-	// Get the index of the voxel the cell is in
-	int voxel_index = pCell->get_current_voxel_index();
-
-	// Get extra-cellular oxygen density (in the voxel)
-	double oxygen_density = microenvironment.density_vector(voxel_index)[oxygen_index];
-
-	// Update the motility and the degradation by MMPs of the cell depending on the
-	// oxygen density
-	if(oxygen_density < pCell->parameters.o2_hypoxic_response)
+	// If we don't want to simulate the EMT transition we don't need to update the motility of the cell
+	if (parameters.bools("emt_transition"))
 	{
-		pCell->phenotype.motility.is_motile = true;
-		pCell->phenotype.secretion.secretion_rate("mmp") = parameters.doubles("secretion_rate_soluble_mmp");
-	} else
-	{
-		pCell->phenotype.motility.is_motile = false;
-		pCell->phenotype.secretion.secretion_rate("mmp") = 0.0;
+		// Get oxygen substrate index
+		int oxygen_index = microenvironment.find_density_index("oxygen");
+
+		// Get the index of the voxel the cell is in
+		int voxel_index = pCell->get_current_voxel_index();
+
+		// Get extra-cellular oxygen density (in the voxel)
+		double oxygen_density = microenvironment.density_vector(voxel_index)[oxygen_index];
+
+		// Update the motility and the degradation by MMPs of the cell depending on the
+		// oxygen density
+		if(oxygen_density < pCell->parameters.o2_hypoxic_response)
+		{
+			pCell->phenotype.motility.is_motile = true;
+			pCell->phenotype.secretion.secretion_rate("mmp") = parameters.doubles("secretion_rate_soluble_mmp");
+		} else
+		{
+			pCell->phenotype.motility.is_motile = false;
+			pCell->phenotype.secretion.secretion_rate("mmp") = 0.0;
+		}
 	}
 
 	return;
