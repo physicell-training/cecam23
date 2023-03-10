@@ -21,6 +21,7 @@ from matplotlib.ticker import MaxNLocator
 from matplotlib.collections import LineCollection
 from matplotlib.patches import Circle, Ellipse, Rectangle, Polygon
 from matplotlib.collections import PatchCollection
+from matplotlib.animation import FuncAnimation, FFMpegWriter
 import matplotlib.colors as mplc
 from mpl_toolkits.axes_grid1.axes_divider import make_axes_locatable
 from matplotlib import gridspec
@@ -610,6 +611,16 @@ class Vis(QWidget):
         self.cell_counts_button.clicked.connect(self.cell_counts_cb)
         self.vbox.addWidget(self.cell_counts_button)
 
+        self.vbox.addWidget(QHLine())
+
+        #------------------
+        self.make_video_button = QPushButton("Save video")
+        # self.cell_counts_button.setStyleSheet("QPushButton {background-color: lightgreen; color: black;}")
+        self.make_video_button.setFixedWidth(200)
+        self.make_video_button.clicked.connect(self.make_video_cb)
+        self.vbox.addWidget(self.make_video_button)
+
+
         #-----------
         self.frame_count.textChanged.connect(self.change_frame_count_cb)
 
@@ -720,7 +731,25 @@ class Vis(QWidget):
 
         return True
 
+    def init_func(self):
+        self.ax0.clear()
 
+    def make_video_cb(self):
+        xml_pattern = self.output_dir + "/" + "output*.xml"
+        xml_files = glob.glob(xml_pattern)
+        num_xml = len(xml_files)
+        mpg_writer = FFMpegWriter(fps=10)
+        animation = FuncAnimation(self.figure, self.plot_frame,
+                                #    init_func=self.init_func, 
+                                   frames=num_xml, interval=25
+        )
+        animation.save("video.mp4", writer=mpg_writer)
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Video saved !")
+        msgBox.setStandardButtons(QMessageBox.Ok)
+        msgBox.exec()
+        
     def cell_counts_cb(self):
         print("---- cell_counts_cb(): --> window for 2D population plots")
         # self.analysis_data_wait.value = 'compute n of N ...'
@@ -953,6 +982,21 @@ class Vis(QWidget):
 
         self.canvas.update()
         self.canvas.draw()
+
+    def plot_frame(self, frame):
+        self.ax0.cla()
+        if self.substrates_checked_flag:  # do first so cells are plotted on top
+            self.plot_substrate(frame)
+        if self.cells_checked_flag:
+            if self.plot_cells_svg:
+                self.plot_svg(frame)
+            else:
+                self.plot_cell_scalar(frame)
+
+        # self.frame_count.setText(str(self.current_svg_frame))
+
+        # self.canvas.update()
+        # self.canvas.draw()
 
     def fill_substrates_combobox(self, substrate_list):
         # print("vis_tab.py: ------- fill_substrates_combobox")
@@ -1964,6 +2008,9 @@ class Vis(QWidget):
         if self.fibres_checked_flag:
             self.polygons(polys=polys)
         self.ax0.set_aspect(1.0)
+        
+        # fname = "snapshot%08d.png" % frame
+        # plt.savefig(fname)
     
     #-----------------------------------------------------
     def plot_cell_scalar(self, frame):
