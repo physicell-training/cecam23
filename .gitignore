@@ -5,3 +5,6 @@ code/.DS_Store
 code/PhysiCell/interaction_demo
 code/PhysiCell/project
 code/PhysiCell/pmb_debug.log
+code/*/output/
+*.svg
+.vscode/settings.json
