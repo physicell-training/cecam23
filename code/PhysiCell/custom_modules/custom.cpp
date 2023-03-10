@@ -97,31 +97,34 @@ void degrade_matrix_soluble_mmp()
 	}
 }
 
-void custom_cell(Cell* pCell, Phenotype& phenotype, double dt) {
-	
-	// Scaling our orientation to the radius of the cell
-	std::vector<double> scaled_orientation = phenotype.geometry.radius * pCell->state.orientation;
-	
-	// Calculating the position of the membrane in the direction of the cell
-	std::vector<double> position_membrane = pCell->position + scaled_orientation;
-	
-	// Computing the index of the voxel at that position
-	int voxel_membrane = microenvironment.nearest_voxel_index( position_membrane );
-	
-	// Finding the collagen substrate index
-	int collagen_index = microenvironment.find_density_index("collagen");
-	
-	// Finding out the quantity of collagen in that voxel
-	double collagen_quantity = microenvironment.density_vector(voxel_membrane)[collagen_index];
+void custom_cell(Cell* pCell, Phenotype& phenotype, double dt)
+{
+	if (pCell->phenotype.motility.is_motile)
+	{
+		// Scaling our orientation to the radius of the cell
+		std::vector<double> scaled_orientation = phenotype.geometry.radius * pCell->state.orientation;
+		
+		// Calculating the position of the membrane in the direction of the cell
+		std::vector<double> position_membrane = pCell->position + scaled_orientation;
+		
+		// Computing the index of the voxel at that position
+		int voxel_membrane = microenvironment.nearest_voxel_index( position_membrane );
+		
+		// Finding the collagen substrate index
+		int collagen_index = microenvironment.find_density_index("collagen");
+		
+		// Finding out the quantity of collagen in that voxel
+		double collagen_quantity = microenvironment.density_vector(voxel_membrane)[collagen_index];
 
-	//Finding the crosslinks substrate index
-	int crosslinks_index = microenvironment.find_density_index("crosslinks");
+		//Finding the crosslinks substrate index
+		int crosslinks_index = microenvironment.find_density_index("crosslinks");
 
-	// Finding out the crosslinking average in that voxel
-	double crosslinking_quantity = microenvironment.density_vector(voxel_membrane)[crosslinks_index];
-	
-	// Reducing the quantity of collagen by 2% everytime we call this function (every mechanics_dt)
-	microenvironment.density_vector(voxel_membrane)[collagen_index] *=  (1.0 - parameters.doubles("degradation_rate_membrane_mmp")*(1.1 - crosslinking_quantity)); 
+		// Finding out the crosslinking average in that voxel
+		double crosslinking_quantity = microenvironment.density_vector(voxel_membrane)[crosslinks_index];
+		
+		// Reducing the quantity of collagen by 2% everytime we call this function (every mechanics_dt)
+		microenvironment.density_vector(voxel_membrane)[collagen_index] *=  (1.0 - parameters.doubles("degradation_rate_membrane_mmp")*(1.1 - crosslinking_quantity)); 
+	}
 }
 
 void custom_update_cell_velocity( Cell* pCell, Phenotype& phenotype, double dt)
@@ -294,7 +297,39 @@ std::vector<std::string> my_coloring_function( Cell* pCell )
 { return paint_by_number_cell_coloring(pCell); }
 
 void phenotype_function( Cell* pCell, Phenotype& phenotype, double dt )
-{ return; }
+{
+	// If the cell is dead, we don't need to update it anymore (we remove the update function)
+	if (pCell->phenotype.death.dead){
+		pCell->functions.update_phenotype = NULL;
+		return;
+	}
+
+	// Update the cell division and apoptosis rate depending on the extracellular oxygen concentration
+    update_cell_and_death_parameters_O2_based(pCell,phenotype,dt);
+
+	// Get oxygen substrate index
+	int oxygen_index = microenvironment.find_density_index("oxygen");
+
+	// Get the index of the voxel the cell is in
+	int voxel_index = pCell->get_current_voxel_index();
+
+	// Get extra-cellular oxygen density (in the voxel)
+	double oxygen_density = microenvironment.density_vector(voxel_index)[oxygen_index];
+
+	// Update the motility and the degradation by MMPs of the cell depending on the
+	// oxygen density
+	if(oxygen_density < pCell->parameters.o2_hypoxic_response)
+	{
+		pCell->phenotype.motility.is_motile = true;
+		pCell->phenotype.secretion.secretion_rate("mmp") = parameters.doubles("secretion_rate_soluble_mmp");
+	} else
+	{
+		pCell->phenotype.motility.is_motile = false;
+		pCell->phenotype.secretion.secretion_rate("mmp") = 0.0;
+	}
+
+	return;
+}
 
 void custom_function( Cell* pCell, Phenotype& phenotype , double dt )
 { return; } 
